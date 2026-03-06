@@ -1,8 +1,9 @@
 const Tags =() =>{
         return(
             <div className="tags">
-                <h2>Это заголовок тегов</h2>
-                <p>Это описание тегов</p>
+               <button>Тег 1</button>
+               <button>Тег 2</button>
+               <button>Тег 3</button>
             </div>
         )
 }

@@ -3,11 +3,14 @@ import Header from "../components/Header";
 import PostList from "../components/PostList";
 import PaginationBar from "../components/PaginationBar";
 
-const HomePage =()=>{
+const HomePage =({handleClick, count})=>{
     return(
         <>
         <Header/>
-        <PostList/>
+        <PostList
+            handleClick={handleClick}
+            count={count}
+        />
         <PaginationBar/>
         </>
     )

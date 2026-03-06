@@ -3,10 +3,11 @@
 const Navigation =() => {
     return(
         <nav className="navigation">
-            <ul>
-                <li><a href="/">Главная</a></li>
-                <li><a href="/about">О нас</a></li>
-                <li><a href="/contact">Контакты</a></li>
+            <ul className="navList">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">New Post</a></li>
+                <li><a href="/contact">Setings</a></li>
+                <li><a href="/profile" className="Profile">Profile</a></li>
             </ul>
         </nav>
     )

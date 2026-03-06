@@ -1,7 +1,7 @@
-const Button =() => {
+const Button =({handleClick, count}) => {
     return(
-        <button className="button">
-            Нажми меня
+        <button className="button" onClick={handleClick}>
+            Like {count}
         </button>
     )
 }
