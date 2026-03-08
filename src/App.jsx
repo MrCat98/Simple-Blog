@@ -13,10 +13,10 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom'
 
 const App =()=>{
   
-  const[count ,setCount] = useState(0)
+  const[likes ,setCount] = useState(0)
 
   function handleClick(){
-    setCount(count + 1)
+    setCount(likes + 1)
   }
 
   return(
@@ -24,7 +24,7 @@ const App =()=>{
         <Routes>
           <Route path="/" element={<HomePage 
           handleClick={handleClick}
-          count={count}
+          likes={likes}
           />} />
           {/* <Route path="/article" element={<ArticlePage />} />
           <Route path="/profile" element={<ProfilePage />} />
