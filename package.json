@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "date-fn": "^0.0.2",
+    "default-props": "^0.1.1",
+    "prop-types": "^15.8.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.13.1"

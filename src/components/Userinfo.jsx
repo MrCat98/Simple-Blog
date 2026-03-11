@@ -1,13 +1,21 @@
-
+import prof from "../assets/prof.svg";
+import PropTypes from "prop-types";
 
 
 const bannerUserinfo =() => {
-    return(
+    return (
         <div className="bannerUserinfo">
-            <h2>Это заголовок информации о пользователе</h2>
-            <p>Это описание информации о пользователе</p>
+            <img src={prof} alt="profile" />
+            <div className="text-wrapper">
+                <h2>Это заголовок информации о пользователе</h2>
+                <p>Это описание информации о пользователе</p>
+            </div>
         </div>
     )
+}
+
+bannerUserinfo.propTypes = {
+    
 }
 
 export default bannerUserinfo;

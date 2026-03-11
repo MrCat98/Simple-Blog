@@ -1,34 +1,45 @@
-import penIcon from '../PNG/pen.svg'
-import settingsIcon from '../PNG/settings.svg'
-import profileIcon from '../PNG/user.svg'
+import penIcon from '../assets/pen.svg'
+import settingsIcon from '../assets/settings.svg'
+import profileIcon from '../assets/user.svg'
+import { Link } from 'react-router-dom';
 
 const Navigation =() => {
+    const links =[
+        {path: "/",
+            label: "Home",
+            icon: null
+        },
+        {path: "/new-post",
+             label: "New Post", 
+             icon: penIcon},
+        {path: "/settings", 
+            label: "Settings", 
+            icon: settingsIcon},
+        {path: "/profile", 
+            label: "Profile", 
+            icon: profileIcon
+
+        }
+    ]
+
     return(
         <nav className="navigation">
             <h3 className="navigation__Title">Realworld-blog</h3>
+
             <ul className="navigation__List">
-                <li><a href="/">Home</a></li>
-                <li>
-                    <a href="/about">
-                        <img className="new-post-svg" src={penIcon} alt="New Post"/>
-                        <span>New Post</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/contact">
-                        <img className="settings-svg" src={settingsIcon} alt="Settings"/>
-                        <span>Settings</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/profile" className="Profile">
-                        <img className="profile-svg" src={profileIcon} alt="Profile"/>
-                        <span>Profile</span>
-                    </a>
-                </li>
+
+                {links.map((link, index) => (
+                    <li key={index}>
+                        <Link to={link.path}>
+                            {link.icon && <img src={link.icon} alt={link.label} />}
+                            <span>{link.label}</span>
+                        </Link>
+                    </li>
+                ))}
             </ul>
         </nav>
     )
 }
 
 export default Navigation;
+                  
