@@ -16,7 +16,7 @@ return(
         <Default/>
 
         <div className="content-container">
-            <Sidebar/>
+            <Sidebar />
             <div className="content">
                 <PostList
                     handleClick={handleClick}

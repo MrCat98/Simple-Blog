@@ -5,13 +5,16 @@ import NotFountPage from "./pages/NotFountPage";
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-const App = () => {
+
+const App = () => { 
 
   const [likes, setLikes] = useState(0);
 
   function plus() {
-    setLikes(prev => prev + 1);
+    setLikes(likes + 1);
+    console.log(likes);
   }
+
 
   return (
     <BrowserRouter>

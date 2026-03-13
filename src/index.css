@@ -170,7 +170,7 @@ body{
     cursor: pointer;
 }
 
-.bannerUserinfo{
+.BannerUserinfo{
     min-width: 124px;
     min-height:36px;
     display: flex;
@@ -178,7 +178,7 @@ body{
     align-items: center;
     gap: 10px;
 }
-.bannerUserinfo img{
+.BannerUserinfo img{
     width:24px;
     height:24px;
 }

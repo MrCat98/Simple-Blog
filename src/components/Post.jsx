@@ -1,17 +1,15 @@
-import React from "react";
 import Tags from "./Tag";
 import Userinfo from "./Userinfo";
 import Button from "./Button";
 import PropTypes from "prop-types";
-import DefaultProps from "prop-types";
 
-const PostList =({onHandleClick, likes, }) => {
+const PostList =({onHandleClick, likes }) => {
     return(
   
         <ul className="postList">
             <li className="post">
                 <div className="postHeading">
-                    <Userinfo/>
+                    <Userinfo  />
                     <Button
                         onHandleClick={onHandleClick}
                         likes={likes}
