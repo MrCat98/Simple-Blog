@@ -118,14 +118,14 @@ body{
     gap:8px;
 }
 
-.tags button{
+.tags li{
     font-family: 'Source Sans 3', monospace;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #AAAAAA;
     font-size:16px;
-    width: 50px;
+    min-width: 50px;
     height: 20px;
     background-color: #ffffff;
     border: 1px solid #AAAAAA;
@@ -134,8 +134,8 @@ body{
     cursor: pointer;
 }
 
-.tags button:hover{
-    background-color: #955252;
+.tags li:hover{
+    background-color: #61BB61;
     color: white;
 }
 

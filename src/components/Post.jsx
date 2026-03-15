@@ -3,43 +3,31 @@ import Userinfo from "./Userinfo";
 import Button from "./Button";
 import PropTypes from "prop-types";
 
-const PostList =({onHandleClick, likes }) => {
+const PostList =({onHandleClick, likes, articles }) => {
     return(
   
         <ul className="postList">
             <li className="post">
                 <div className="postHeading">
-                    <Userinfo  />
+                    <Userinfo  
+                    articles={articles}
+                    />
                     <Button
                         onHandleClick={onHandleClick}
                         likes={likes}
                     />
                 </div>
                 <div className="postContent">
+                    <h3>{articles[0]?.title}</h3>
                     <p className="postContent">
-                        Это содержание поста
+                        {articles[0]?.description}
                     </p>
-                    <Tags/>  
+                    <Tags
+                    articles={articles}
+                    />  
             
                 </div>
-            </li>
-
-            <li className="post">
-                <div className="postHeading">
-                    <Userinfo/>
-                    <Button
-                        onHandleClick={onHandleClick}
-                        likes={likes}
-                    />
-                </div>
-                <div className="postContent">
-                    <p className="postContent">
-                        Это содержание поста
-                    </p>
-                    <Tags/>  
-            
-                </div>
-            </li>
+            </li> 
         </ul> 
     )
 }
