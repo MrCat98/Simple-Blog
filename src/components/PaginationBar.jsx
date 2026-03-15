@@ -1,13 +1,10 @@
-import React from "react";
-import PaginationButton from "./PaginationButton";
+
 
 const PaginationBar =() => {
     
     return(
         <div className="pagination-bar">
-            <PaginationButton 
-            
-            />
+            <button className="pagination-button"/>
         </div>
     )
 }

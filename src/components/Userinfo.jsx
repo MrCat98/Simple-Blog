@@ -1,17 +1,18 @@
-import prof from "../assets/prof.svg";
+
 import PropTypes from "prop-types";
 
-const BannerUserinfo = () => {
+
+const BannerUserinfo = ({articles=[]}) => {
 
   return (
-    <div className="BannerUserinfo">
-      <img src={prof} alt="profile" />
-
-      <div className="text-wrapper">
-        <h3 className="username">Username</h3>
-        <p className="date">Дата публикации</p>
-      </div>
-    </div>
+    <ul>
+      {Array.isArray(articles)&&
+      articles.map((article) => (
+        <li key={article.slug}>
+          {article.author.username}
+        </li>
+      ))}
+    </ul>
   );
 };
 

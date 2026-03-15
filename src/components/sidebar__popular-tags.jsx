@@ -1,10 +1,12 @@
   import Tags from "./Tag";
   
-  const Sidebar =()=>{
+  const Sidebar =(articles)=>{
     return(
       <div className="sidebar__popular-tags">
         <h3>Popular tags</h3>
-        <Tags/>
+        <Tags
+        articles={articles}
+        />
       </div>
     )
   }

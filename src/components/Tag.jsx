@@ -1,10 +1,17 @@
-const Tags =() =>{
-        return(
-            <div className="tags">
-                    <button>tag</button>
-                        <button>tag</button>
-            </div>
-        )
-}
+const Tags = ({ articles = [] }) => {
+
+  return (
+    <ul>
+        {Array.isArray(articles) &&
+        articles.map((article) => (
+          <li key={article.slug}>
+            {article.tagList.map((tag, index) => (
+              <span key={index}>{tag}</span>
+            ))}
+          </li>
+        ))}
+    </ul>
+  );
+};
 
 export default Tags;
