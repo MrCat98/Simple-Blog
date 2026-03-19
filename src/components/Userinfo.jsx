@@ -1,14 +1,21 @@
+import prof from '../assets/prof.svg'
 
-import PropTypes from "prop-types";
 
-
-const BannerUserinfo = ({articles=[]}) => {
-
+const Userinfo = ({ article }) => {
   return (
-     <div>
-      {articles[0]?.author.username}
+    <div className="bannerUserinfo">
+      <img
+        className='profile-image'
+        src={prof}
+        alt={article.author.username}
+      />
+
+      <div className="author-info">
+        <h4>{article.author.username}</h4>
+        <p>{article.createdAt}</p>
+      </div>
     </div>
   );
 };
 
-export default BannerUserinfo;
+export default Userinfo;

@@ -1,44 +1,38 @@
 import Tags from "./Tag";
 import Userinfo from "./Userinfo";
 import Button from "./Button";
-import PropTypes from "prop-types";
 
-const PostList =({onHandleClick, likes, articles }) => {
-    return(
-  
-        <ul className="postList">
-            <li className="post">
-                <div className="postHeading">
-                    <Userinfo  
-                    articles={articles}
-                    />
-                    <Button
-                        onHandleClick={onHandleClick}
-                        likes={likes}
-                    />
-                </div>
-                <div className="postContent">
-                    <h3>{articles[0]?.title}</h3>
-                    <p className="postContent">
-                        {articles[0]?.description}
-                    </p>
-                    <Tags
-                    articles={articles}
-                    />  
-            
-                </div>
-            </li> 
-        </ul> 
-    )
-}
+const PostList = ({ handleClick, likes, articles = [] }) => {
+        
 
-PostList.propTypes = {
-    onHandleClick: PropTypes.func.isRequired,
-    likes:PropTypes.number.isRequired,
-    onDoubleClick: PropTypes.func.isRequired
+  return (
+    <ul className="postList">
 
-}
+      {articles.map(article => (
+        <li key={article.slug} className="post">
 
+          <div className="postHeading">
+            <Userinfo article={article} />
 
+            <Button
+              onHandleClick={() => handleClick(article.slug)}
+  likes={likes[article.slug] || 0}
+            />
+          </div>
+
+          <div className="postContent">
+            <h3>{article.title}</h3>
+
+            <p>{article.description}</p>
+
+            <Tags tags={article.tagList} />
+          </div>
+
+        </li>
+      ))}
+
+    </ul>
+  );
+};
 
 export default PostList;

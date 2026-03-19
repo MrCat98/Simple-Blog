@@ -1,6 +1,6 @@
 import PostList from "../components/Post";
 import PaginationBar from "../components/PaginationBar";
-import Navigation from "../components/Navbar Frame";
+import Navigation from "../components/NavbarFrame";
 import Default from "../components/Default";
 import Sidebar from "../components/sidebar__popular-tags";
 import PropTypes from "prop-types";
@@ -17,14 +17,16 @@ return(
 
         <div className="content-container">
             <Sidebar 
-            articles={articles}
+            tags={articles.tagList}
             />
             <div className="content">
+                { articles.map(article =>(
                 <PostList
                     handleClick={handleClick}
                     likes={likes}
-                    articles={articles}
-                />
+                    key={article.slug}
+                    articles={articles}/>))
+                }
                 <PaginationBar/>
             </div>
         </div>
