@@ -218,5 +218,32 @@ body{
 .Userinfo img{
     min-width:24px;
     min-height: 24px;
-    padding: 16px,8px,16px,8px;
+}
+
+.postContent{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.Article{
+    display: flex;
+    flex-direction: column;
+    gap:16px;
+}
+
+.Article h3{
+    font-weight: 600;
+    font-size:32px;
+    line-height:36px;
+    color: #333333;
+}
+
+.Article p{
+    font-family:'Source Sans 3', monospace;
+    font-weight:400;
+    font-size:16px;
+    line-height:24px;
+    color:#AAAAAA;
+
 }
