@@ -1,6 +1,7 @@
 import Tags from "./Tag";
 import Userinfo from "./Userinfo";
 import Button from "./Button";
+import Article from "./Article";
 
 const PostList = ({ handleClick, likes, articles = [] }) => {
         
@@ -21,9 +22,11 @@ const PostList = ({ handleClick, likes, articles = [] }) => {
           </div>
 
           <div className="postContent">
-            <h3>{article.title}</h3>
 
-            <p>{article.description}</p>
+          <Article
+          articleTitle ={article.title}
+          articleDescription={article.description}
+          />
 
             <Tags tags={article.tagList} />
           </div>

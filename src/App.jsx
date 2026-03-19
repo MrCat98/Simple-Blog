@@ -14,6 +14,7 @@ const App = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [page, setPage]=useState(1)
+    const [totalPages,setTotalPages] = useState(1)
     const perPage = 3
 
     useEffect(()=>{
@@ -27,6 +28,7 @@ const App = () => {
 
         const data = await response.json();
         setArticles(data.articles)
+        setTotalPages(Math.ceil(data.articlesCount=16/perPage))
         console.log(data)
       }
       
@@ -64,6 +66,9 @@ const App = () => {
               handleClick={plus}
               likes={likes}
               articles={articles}
+              page ={page}
+              setPage={setPage}
+              totalPages={totalPages}
             />
           }
         />

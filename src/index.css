@@ -185,7 +185,6 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .pagination-bar button{
@@ -194,4 +193,30 @@ body{
     align-items: center;
     width:41px;
     height: 44px;
+    background-color:transparent;
+    border: 1px solid #61BB61;
+}
+
+.pagination-bar button::before{
+    background-color: #61BB61;
+    color: #ffffff;
+}
+
+.Userinfo{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.Userinfo h4{
+    color: #61BB61;
+    font-family: 'Source Sans 3', monospace;
+    font-weight:600;
+    font-size: 16px;
+    
+}
+
+.Userinfo img{
+    min-width:24px;
+    min-height: 24px;
+    padding: 16px,8px,16px,8px;
 }

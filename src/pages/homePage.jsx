@@ -6,7 +6,7 @@ import Sidebar from "../components/sidebar__popular-tags";
 import PropTypes from "prop-types";
 
 
-const HomePage =({handleClick, likes,articles
+const HomePage =({handleClick, likes,articles,page,setPage,totalPages
 })=>{
 
 return(
@@ -27,7 +27,12 @@ return(
                     key={article.slug}
                     articles={articles}/>))
                 }
-                <PaginationBar/>
+                <PaginationBar
+                articles={articles}
+                page={page}
+                setPage={setPage}
+                totalPages = {totalPages}
+                />
             </div>
         </div>
     </div>

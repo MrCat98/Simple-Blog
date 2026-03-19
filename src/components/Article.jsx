@@ -1,11 +1,12 @@
 
 
-const banerArticle =() => {
+const banerArticle =({articleDescription,articleTitle}) => {
 
     return(
         <div className="banerArticle">
-            <h2>Это заголовок статьи</h2>
-            <p>Это описание статьи</p>
+        <h3>{articleTitle}</h3>
+
+        <p>{articleDescription}</p>
         </div>
     )
 }

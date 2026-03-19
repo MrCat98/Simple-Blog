@@ -3,7 +3,7 @@ import prof from '../assets/prof.svg'
 
 const Userinfo = ({ article }) => {
   return (
-    <div className="bannerUserinfo">
+    <div className="Userinfo">
       <img
         className='profile-image'
         src={prof}

@@ -1,10 +1,23 @@
 
-const PaginationBar =() => {
+const PaginationBar =({page, setPage, totalPages}) => {
+
+    const pages = Array.from({length:totalPages},
+        (_,i)=>i+1
+    )
     
     return(
         <div className="pagination-bar">
-            <button className="pagination-button" content="1"/>
-        </div>
+      {pages.map(num => (
+        <button
+          key={num}
+          className={page === num ? "active" : ""}
+          onClick={() => setPage(num)}
+        >
+          {num}
+        </button>
+      ))}
+
+    </div>
     )
 }
 
