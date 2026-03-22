@@ -245,5 +245,30 @@ body{
     font-size:16px;
     line-height:24px;
     color:#AAAAAA;
+}
 
+.sidebar__popular-tags ul{
+    display: flex;
+    gap: 8px;
+}
+
+.sidebar__popular-tags li{
+    font-family: 'Source Sans 3', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #AAAAAA;
+    font-size:16px;
+    min-width: 50px;
+    height: 20px;
+    background-color: #ffffff;
+    border: 1px solid #AAAAAA;
+    border-radius:16px;
+    padding: 6px 16px;
+    cursor: pointer;
+}
+
+.sidebar__popular-tags li:hover{
+background-color: #61BB61;
+    color: white;
 }

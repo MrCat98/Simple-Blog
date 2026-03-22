@@ -1,7 +1,7 @@
 import prof from '../assets/prof.svg'
 
 
-const Userinfo = ({ article }) => {
+const Userinfo = ({ article,formatDate }) => {
   return (
     <div className="Userinfo">
       <img
@@ -12,7 +12,7 @@ const Userinfo = ({ article }) => {
 
       <div className="author-info">
         <h4>{article.author.username}</h4>
-        <p>{article.createdAt}</p>
+        <p>{formatDate(article.createdAt)}</p>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import Userinfo from "./Userinfo";
 import Button from "./Button";
 import Article from "./Article";
 
-const PostList = ({ handleClick, likes, articles = [] }) => {
+const PostList = ({ handleClick, likes, articles,formatDate}) => {
         
 
   return (
@@ -13,7 +13,7 @@ const PostList = ({ handleClick, likes, articles = [] }) => {
         <li key={article.slug} className="post">
 
           <div className="postHeading">
-            <Userinfo article={article} />
+            <Userinfo article={article} formatDate ={formatDate} />
 
             <Button
               onHandleClick={() => handleClick(article.slug)}
@@ -26,8 +26,8 @@ const PostList = ({ handleClick, likes, articles = [] }) => {
           <Article
           articleTitle ={article.title}
           articleDescription={article.description}
+          article = {articles}
           />
-
             <Tags tags={article.tagList} />
           </div>
 
