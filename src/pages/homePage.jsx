@@ -5,7 +5,7 @@ import Default from "../components/Default";
 import Sidebar from "../components/SidebarPopularTags";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import {Outlet,Link} from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 
 const HomePage = () => {
   const [likes, setLikes] = useState({});
@@ -65,23 +65,21 @@ const HomePage = () => {
 
   return (
     <div className="homePage">
-      <div className="content-container">
-        <Default />
-        <Sidebar articles={articles} />
-        <div className="content">
+      <Default />
+      <Sidebar articles={articles} />
+      <div className="content">
           <PostList
             handleClick={plus}
             likes={likes}
             articles={articles}
             formatDate={formatDate}
           />
-          <PaginationBar
-            articles={articles}
-            page={page}
-            setPage={setPage}
-            totalPages={totalPages}
-          />
-        </div>
+        <PaginationBar
+          articles={articles}
+          page={page}
+          setPage={setPage}
+          totalPages={totalPages}
+        />
       </div>
     </div>
   );

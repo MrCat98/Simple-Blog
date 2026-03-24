@@ -1,10 +1,10 @@
 import {Link} from "react-router-dom"
 
-const banerArticle =({articleDescription,articleTitle,article}) => {
-
+const BannerArticle =({articleDescription,articleTitle,article}) => {
+        
     return(
         <div className="Article">
-        <Link to={`/postpage/${article.slug}`} state={{articleData:article}}>
+        <Link to={`/articlepage/${article.slug}`}>
         <h3>{articleTitle}</h3>
         </Link>
         <p>{articleDescription}</p>
@@ -12,4 +12,4 @@ const banerArticle =({articleDescription,articleTitle,article}) => {
     )
 }
 
-export default banerArticle;
+export default BannerArticle;

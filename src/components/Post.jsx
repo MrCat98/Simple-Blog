@@ -13,6 +13,7 @@ const PostList = ({ handleClick, likes, articles,formatDate}) => {
         <li key={article.slug} className="post">
 
           <div className="postHeading">
+
             <Userinfo article={article} formatDate ={formatDate} />
 
             <Button
@@ -26,7 +27,7 @@ const PostList = ({ handleClick, likes, articles,formatDate}) => {
           <Article
           articleTitle ={article.title}
           articleDescription={article.description}
-          article = {articles}
+          articles = {articles}
           />
             <Tags tags={article.tagList} />
           </div>
