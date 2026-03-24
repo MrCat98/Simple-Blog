@@ -1,5 +1,5 @@
 import Tags from "./Tag";
-import Userinfo from "./Userinfo";
+import Userinfo from "./UserInfo";
 import Button from "./Button";
 import Article from "./Article";
 

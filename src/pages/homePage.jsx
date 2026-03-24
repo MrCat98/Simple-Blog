@@ -2,11 +2,10 @@ import PostList from "../components/Post";
 import PaginationBar from "../components/PaginationBar";
 import Navigation from "../components/NavbarFrame";
 import Default from "../components/Default";
-import Sidebar from "../components/sidebar__popular-tags";
+import Sidebar from "../components/SidebarPopularTags";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import {Outlet,Link} from "react-router-dom";
 
 const HomePage = () => {
   const [likes, setLikes] = useState({});
@@ -17,8 +16,6 @@ const HomePage = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const perPage = 5;
-
-  
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -50,13 +47,13 @@ const HomePage = () => {
   if (loading) return <h1>Загрузка</h1>;
   if (error) return <h1>Ошибка: {error}</h1>;
 
-  const formatDate = (date) =>{
-    return new Date(date).toLocaleDateString("en-US",{
-        day:"numeric",
-        month:"long",
-        year:"numeric",
-    })
-  }
+  const formatDate = (date) => {
+    return new Date(date).toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  };
 
   function plus(slug) {
     setLikes((prev) => ({
@@ -68,14 +65,16 @@ const HomePage = () => {
 
   return (
     <div className="homePage">
-      <Navigation />
-
-      <Default />
-
       <div className="content-container">
+        <Default />
         <Sidebar articles={articles} />
         <div className="content">
-          <PostList handleClick={plus} likes={likes} articles={articles} formatDate={formatDate}/>
+          <PostList
+            handleClick={plus}
+            likes={likes}
+            articles={articles}
+            formatDate={formatDate}
+          />
           <PaginationBar
             articles={articles}
             page={page}

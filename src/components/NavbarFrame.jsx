@@ -1,7 +1,7 @@
 import penIcon from '../assets/pen.svg'
 import settingsIcon from '../assets/settings.svg'
 import profileIcon from '../assets/user.svg'
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 const Navigation =() => {
     const links =[
