@@ -45,14 +45,14 @@ const ArticlePage = () => {
 
   return (
     <div className="Article-Page">
-      <header className="Article__header--wrapper">
-        <div>
+      <div className="Article-wrapper">
+        <header className="Article__header">
           <h1>{article.title}</h1>
           <Userinfo article={article} formatDate={formatDate} />
-        </div>
-      </header>
+        </header>
+      </div>
       <div className="Article__Page--content--container">
-        <p>{article.body}</p>
+        <p className="Article__text--content">{article.body}</p>
         <Tags tags={article.tagList} />
         <section className="Article__User--Submit">
           <Userinfo article={article} formatDate={formatDate} />

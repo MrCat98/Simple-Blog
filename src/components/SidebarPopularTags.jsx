@@ -1,19 +1,21 @@
 const Sidebar = ({ articles }) => {
-
-  const tags = articles
-    .flatMap(article => article.tagList)
-    .slice(0, 5);
+const tags = [
+    ...new Set(
+      articles
+        .flatMap((article) => article.tagList || [])
+        .filter((tag) => tag && typeof tag === 'string')
+    )
+  ].slice(0, 5);
 
   return (
     <div className="sidebar__popular-tags">
       <h3>Popular tags</h3>
 
       <ul>
-        {tags.map(tag => (
+        {tags.filter(tag=>tag!==null).map((tag) => (
           <li key={tag}>{tag}</li>
         ))}
       </ul>
-
     </div>
   );
 };
