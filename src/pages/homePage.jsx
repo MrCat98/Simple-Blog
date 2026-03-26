@@ -15,12 +15,12 @@ const HomePage = () => {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const perPage = 5;
+  const perPage = 10;
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const offset = (page - 1) * perPage;
+        const offset = (page - 1) * perPage + 10;
         const response = await fetch(
           `https://realworld.habsida.net/api/articles/?limit=${perPage}&offset=${offset}`,
         );
@@ -30,7 +30,7 @@ const HomePage = () => {
 
         const data = await response.json();
         setArticles(data.articles);
-        setTotalPages(Math.ceil((data.articlesCount = 16 / perPage)));
+        setTotalPages(Math.ceil(data.articlesCount / perPage));
         console.log(data);
       } catch (err) {
         setError(err.message);
@@ -68,12 +68,12 @@ const HomePage = () => {
       <Default />
       <Sidebar articles={articles} />
       <div className="content">
-          <PostList
-            handleClick={plus}
-            likes={likes}
-            articles={articles}
-            formatDate={formatDate}
-          />
+        <PostList
+          handleClick={plus}
+          likes={likes}
+          articles={articles}
+          formatDate={formatDate}
+        />
         <PaginationBar
           articles={articles}
           page={page}
