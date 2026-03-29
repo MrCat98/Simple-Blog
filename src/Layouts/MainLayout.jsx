@@ -1,10 +1,14 @@
 import { Outlet } from "react-router-dom";
 import Navigation from "../components/NavbarFrame";
 
+
 const MainLayout = () => {
+ 
+
+
   return (
     <div className="homePage">
-      <Navigation />
+      <Navigation  />
       <Outlet />
     </div>
   );

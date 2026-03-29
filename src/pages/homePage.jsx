@@ -9,7 +9,6 @@ import { Outlet, Link } from "react-router-dom";
 
 const HomePage = () => {
   const [likes, setLikes] = useState({});
-
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
