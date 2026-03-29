@@ -13,7 +13,14 @@ import {AuthProvider} from "./context/AuthContext";
 import { useState } from "react";
 
 const App = () => {
-  const [log, setLog] = useState(true);
+  const [log, setLog] = useState(false);
+
+  const handleLogin =()=> {
+    setLog(true)
+  }
+  const handleLogout=()=>{
+    setLog(false)
+  }
   return (
     <AuthProvider>
       <BrowserRouter>
@@ -22,10 +29,10 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/articlepage/:slug" element={<ArticlePage />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signin" element={<SignIn handleLogin={handleLogin}/>} />
             <Route element={<ProtectedRoute isLoggedIn={log} />}>
               <Route path="settings" element={<SettingsPage />} />
-              <Route path="profile" element={<ProfilePage />} />
+              <Route path="profile" element={<ProfilePage handleLogout={handleLogout}/>} />
               <Route path="new-post" element={<NewPostPage />} />
             </Route>{" "}
           </Route>

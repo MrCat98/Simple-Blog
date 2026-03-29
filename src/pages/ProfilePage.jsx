@@ -1,6 +1,6 @@
 
-const ProfilePage = () => {
-  return <div>Profile Page</div>;
+const ProfilePage = ({handleLogout}) => {
+  return <button onClick={handleLogout}>logout</button>
 };
 
 export default ProfilePage;
