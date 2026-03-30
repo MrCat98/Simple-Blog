@@ -6,6 +6,8 @@ import Sidebar from "../components/SidebarPopularTags";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
+import LoadingArrow from "../assets/refresh.svg"
+
 
 const HomePage = () => {
   const [likes, setLikes] = useState({});
@@ -43,7 +45,7 @@ const HomePage = () => {
 
   console.log(articles.tagList);
 
-  if (loading) return <h1>Загрузка</h1>;
+  if (loading) return <div className="loading-wrapper"> <img src={LoadingArrow} alt="Loading"/> <p>Loading...</p></div>;
   if (error) return <h1>Ошибка: {error}</h1>;
 
   const formatDate = (date) => {

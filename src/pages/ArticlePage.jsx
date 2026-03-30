@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Userinfo from "../components/UserInfo";
 import Tags from "../components/Tag";
+import LoadingArrow from "../assets/refresh.svg"
 
 const ArticlePage = () => {
   const { slug } = useParams();
@@ -40,7 +41,7 @@ const ArticlePage = () => {
   };
 
   if (!article) {
-    return <div>Загрузка...</div>;
+    return <div className="loading-wrapper"> <img src={LoadingArrow} alt="Loading"/> <p>Loading...</p></div>;
   }
 
   return (
