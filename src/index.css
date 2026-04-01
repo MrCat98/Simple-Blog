@@ -316,7 +316,7 @@ body {
   flex-direction: column;
   margin-bottom: 10px;
   color: #ffffff;
-  margin-top:118px;
+  margin-top:70px;
 }
 
 .Article__header{
@@ -351,6 +351,7 @@ body {
   justify-content: center;
   align-items: center;
   gap:16px;
+  margin-bottom:30px;
 }
 
 .Article__Page--content--container button {
@@ -373,7 +374,7 @@ align-items: center;
 flex-direction: column;
 font-weight: 400;
 font-size:32px;
-margin-top:50px;
+margin:70px;
 }
 
 .loading-wrapper img{
