@@ -6,7 +6,7 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  
+
   const navigate = useNavigate();
   const { login } = useAuth(); // Достаем функцию login из контекста
 
@@ -16,7 +16,7 @@ const SignIn = () => {
 
     try {
       // Вызываем login из контекста (он сам сходит в API и сохранит токен)
-      await login(email, password); 
+      await login(email, password);
       navigate("/"); // Если всё ок — на главную
     } catch (err) {
       // Если API вернуло ошибку (например, 422 или 401)
@@ -26,26 +26,30 @@ const SignIn = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="signin--form">
       <h2>Sign In</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      
-      <input 
-        type="email" 
-        placeholder="Email" 
-        value={email} 
-        onChange={(e) => setEmail(e.target.value)} 
-        required 
+
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+        className="signIn--Email"
       />
-      <input 
-        type="password" 
-        placeholder="Password" 
-        value={password} 
-        onChange={(e) => setPassword(e.target.value)} 
-        required 
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+        className="signIn--password"
       />
-      
-      <button type="submit">Sign In</button>
+
+      <button type="submit" className="signIn--button">
+        Sign In
+      </button>
     </form>
   );
 };

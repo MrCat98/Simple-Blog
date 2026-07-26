@@ -26,43 +26,48 @@ function SignUpPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input
-        {...register("username", { required: true })}
-        placeholder="Имя"
-        type="text"
-      />
-      <input
-        {...register("email", { required: true })}
-        type="email"
-        placeholder="Email"
-      />
-      <input
-        {...register("password", {
-          required: "Введите пароль",
-          minLength: { value: 6, message: "Минимум 6 символов" },
-        })}
-        type="password"
-        placeholder="Пароль"
-      />
-      {errors.password && (
-        <p style={{ color: "red" }}>{errors.password.message}</p>
-      )}
+    <div className="signup-form--wrapper">
+      <form onSubmit={handleSubmit(onSubmit)} className="signup--form">
+        <h1>Sign Up</h1>
+        <input
+          {...register("username", { required: true })}
+          placeholder="UserName"
+          type="text"
+        />
+        <input
+          {...register("email", { required: true })}
+          type="email"
+          placeholder="Email address"
+        />
+        <input
+          {...register("password", {
+            required: "Введите пароль",
+            minLength: { value: 6, message: "Минимум 6 символов" },
+          })}
+          type="password"
+          placeholder="Password"
+        />
+        {errors.password && (
+          <p style={{ color: "red" }}>{errors.password.message}</p>
+        )}
 
-      {/* Подтверждение пароля */}
-      <input
-        {...register("confirmPassword", {
-          required: "Подтвердите пароль",
-          validate: (value) => value === password || "Пароли не совпадают",
-        })}
-        type="password"
-        placeholder="Повторите пароль"
-      />
-      {errors.confirmPassword && (
-        <p style={{ color: "red" }}>{errors.confirmPassword.message}</p>
-      )}
-      <button type="submit">Зарегистрироваться</button>
-    </form>
+        {/* Подтверждение пароля */}
+        <input
+          {...register("confirmPassword", {
+            required: "Подтвердите пароль",
+            validate: (value) => value === password || "Пароли не совпадают",
+          })}
+          type="password"
+          placeholder="Repeat Password"
+        />
+        {errors.confirmPassword && (
+          <p style={{ color: "red" }}>{errors.confirmPassword.message}</p>
+        )}
+        <div className="signup--button--wrapper">
+          <button type="submit">Sign Up</button>
+        </div>
+      </form>
+    </div>
   );
 }
 
