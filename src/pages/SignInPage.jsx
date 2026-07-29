@@ -26,8 +26,9 @@ const SignIn = () => {
   };
 
   return (
+    <div className="signup-form--wrapper">
     <form onSubmit={handleSubmit} className="signin--form">
-      <h2>Sign In</h2>
+      <h1>Sign In</h1>
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       <input
@@ -46,11 +47,13 @@ const SignIn = () => {
         required
         className="signIn--password"
       />
-
-      <button type="submit" className="signIn--button">
-        Sign In
-      </button>
+      <div className="signin--button--wrapper">
+        <button type="submit" className="signIn--button">
+          Sign In
+        </button>
+      </div>
     </form>
+    </div>
   );
 };
 

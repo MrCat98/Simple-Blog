@@ -11,9 +11,10 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="profile-page">
-      <h1>Профиль пользователя: {user?.username}</h1>
-      <p>Email: {user?.email}</p>
+    <div className="profile-page--wrapper">
+
+      <h1>{user?.username}</h1>
+      <p>{user?.email}</p>
       
       <button onClick={handleLogoutClick}>
         Logout
