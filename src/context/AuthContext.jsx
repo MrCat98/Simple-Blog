@@ -88,6 +88,25 @@ export const AuthProvider = ({ children }) => {
     return data.user;
   };
 
+  const createArticle = async (articleData) => {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`${API_URL}/articles`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+      },
+      body: JSON.stringify({ article: articleData }),
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw data.errors;
+    }
+
+    return data.article;
+  };
+
   const logout = () => {
     setUser(null);
     localStorage.removeItem("token");
@@ -101,7 +120,8 @@ export const AuthProvider = ({ children }) => {
     login, 
     logout, 
     registerUser,
-    updateUser
+    updateUser,
+    createArticle
   };
 
   return (
