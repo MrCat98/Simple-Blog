@@ -405,7 +405,7 @@ body {
   flex-direction: column;
   gap: 10px;
   width: 500px;
-  height: 538px;
+  min-height: 420px;
 
   h1 {
     display: flex;
@@ -422,6 +422,12 @@ body {
     border: 1px solid rgba(170, 170, 170, 1);
     border-radius: 8px;
     padding: 16px;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
 
   .signin--button--wrapper {
@@ -444,6 +450,11 @@ body {
     color: rgb(255, 255, 255, 1);
     border: 1px solid rgb(97, 187, 97);
     background-color: rgb(97, 187, 97);
+  }
+
+  button:disabled {
+    cursor: wait;
+    opacity: 0.7;
   }
 }
 
@@ -512,4 +523,90 @@ body {
  align-items: center;
  flex-direction: column;
  gap: 10px;
+}
+
+.settings-page {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 48px 16px;
+}
+
+.settings-form {
+  width: min(100%, 560px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.settings-form h1 {
+  color: #333333;
+  font-size: 36px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.settings-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #333333;
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 16px;
+}
+
+.settings-form input,
+.settings-form textarea {
+  width: 100%;
+  border: 1px solid #aaaaaa;
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: #333333;
+  font: inherit;
+}
+
+.settings-form textarea {
+  resize: vertical;
+}
+
+.settings-form button {
+  align-self: flex-end;
+  min-width: 180px;
+  height: 43px;
+  border: 1px solid #61bb61;
+  border-radius: 8px;
+  color: #ffffff;
+  background-color: #61bb61;
+  font: 400 18px "Source Sans 3", sans-serif;
+  cursor: pointer;
+}
+
+.settings-form button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.settings-form .logout-button {
+  border-color: #b85c5c;
+  color: #b85c5c;
+  background-color: #ffffff;
+}
+
+.optional {
+  color: #777777;
+  font-size: 14px;
+}
+
+.field-error,
+.form-message--error {
+  color: #c62828;
+}
+
+.form-message--success {
+  color: #338a33;
+}
+
+.form-message,
+.field-error {
+  font-family: "Source Sans 3", sans-serif;
 }

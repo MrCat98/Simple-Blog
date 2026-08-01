@@ -1,58 +1,67 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext"; // Импортируем наш хук
+import { useAuth } from "../context/AuthContext";
 
 const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
-
   const navigate = useNavigate();
-  const { login } = useAuth(); // Достаем функцию login из контекста
+  const { login } = useAuth();
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm({ defaultValues: { email: "", password: "" } });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError(null);
-
+  const onSubmit = async ({ email, password }) => {
     try {
-      // Вызываем login из контекста (он сам сходит в API и сохранит токен)
       await login(email, password);
-      navigate("/"); // Если всё ок — на главную
-    } catch (err) {
-      // Если API вернуло ошибку (например, 422 или 401)
-      setError("Неверный email или пароль");
-      console.error("Login error:", err);
+      navigate("/");
+    } catch (apiErrors) {
+      console.error("Login error:", apiErrors);
+      setError("root", {
+        type: "server",
+        message: "Неверный email или пароль.",
+      });
     }
   };
 
   return (
-    <div className="signup-form--wrapper">
-    <form onSubmit={handleSubmit} className="signin--form">
-      <h1>Sign In</h1>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+    <div className="signin-form--wrapper">
+      <form onSubmit={handleSubmit(onSubmit)} className="signin--form" noValidate>
+        <h1>Sign In</h1>
+        {errors.root && <p className="form-message form-message--error">{errors.root.message}</p>}
 
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-        className="signIn--Email"
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-        className="signIn--password"
-      />
-      <div className="signin--button--wrapper">
-        <button type="submit" className="signIn--button">
-          Sign In
-        </button>
-      </div>
-    </form>
+        <label>
+          Email
+          <input
+            type="email"
+            placeholder="Email"
+            autoComplete="email"
+            {...register("email", {
+              required: "Введите email",
+              pattern: { value: /^\S+@\S+\.\S+$/, message: "Введите корректный email" },
+            })}
+          />
+          {errors.email && <span className="field-error">{errors.email.message}</span>}
+        </label>
+
+        <label>
+          Пароль
+          <input
+            type="password"
+            placeholder="Password"
+            autoComplete="current-password"
+            {...register("password", { required: "Введите пароль" })}
+          />
+          {errors.password && <span className="field-error">{errors.password.message}</span>}
+        </label>
+
+        <div className="signin--button--wrapper">
+          <button type="submit" className="signIn--button" disabled={isSubmitting}>
+            {isSubmitting ? "Входим…" : "Sign In"}
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

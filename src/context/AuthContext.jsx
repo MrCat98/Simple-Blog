@@ -65,6 +65,29 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const updateUser = async (userData) => {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`${API_URL}/user`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+      },
+      body: JSON.stringify({ user: userData }),
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw data.errors;
+    }
+
+    setUser(data.user);
+    if (data.user.token) {
+      localStorage.setItem("token", data.user.token);
+    }
+    return data.user;
+  };
+
   const logout = () => {
     setUser(null);
     localStorage.removeItem("token");
@@ -77,7 +100,8 @@ export const AuthProvider = ({ children }) => {
     isAuthenticated: !!user, 
     login, 
     logout, 
-    registerUser 
+    registerUser,
+    updateUser
   };
 
   return (
