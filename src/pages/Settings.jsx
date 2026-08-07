@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/useAuth";
+
+
+const eName = "Минимум 3,максимум 20 символов";
 
 const getApiError = (errors) => {
   if (!errors || typeof errors !== "object") {
@@ -27,8 +30,16 @@ const isValidImageUrl = (value) => {
   }
 };
 
+const toFormValues = (user) => ({
+  image: user?.image || "",
+  username: user?.username || "",
+  bio: user?.bio || "",
+  email: user?.email || "",
+  password: "",
+});
+
 const SettingsPage = () => {
-  const { updateUser, logout } = useAuth();
+  const { user, updateUser, logout } = useAuth();
   const navigate = useNavigate();
   const [serverError, setServerError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -47,6 +58,10 @@ const SettingsPage = () => {
     },
   });
 
+  useEffect(() => {
+    reset(toFormValues(user));
+  }, [user, reset]);
+
   const onSubmit = async ({ image, username, bio, email, password }) => {
     setServerError("");
     setSuccessMessage("");
@@ -57,8 +72,8 @@ const SettingsPage = () => {
     }
 
     try {
-      await updateUser(updatedUser);
-      reset();
+      const savedUser = await updateUser(updatedUser);
+      reset(toFormValues(savedUser));
       setSuccessMessage("Настройки профиля сохранены.");
     } catch (apiErrors) {
       setServerError(getApiError(apiErrors));
@@ -93,10 +108,10 @@ const SettingsPage = () => {
             aria-label="Username"
             autoComplete="off"
             {...register("username", {
-              validate: (value) =>
-                value.trim().length > 0 ||
-                "Имя пользователя не может быть пустым",
-            })}
+            required: "Введите имя пользователя",
+            minLength: { value: 3, message: eName },
+            maxLength: { value: 20, message: eName },
+          })}
           />
           {errors.username && (
             <span className="field-error">{errors.username.message}</span>
@@ -107,7 +122,7 @@ const SettingsPage = () => {
             type="email"
             placeholder="Email Address"
             aria-label="Email Address"
-            autoComplete="off"
+            autoComplete="email"
             {...register("email", {
               required: "Укажите email",
               pattern: {
@@ -130,7 +145,21 @@ const SettingsPage = () => {
             {...register("bio")}
           />
         </label>
-
+        <label>
+          <input
+            type="url"
+            placeholder="Avatar image (URL)"
+            aria-label="Avatar image (URL)"
+            autoComplete="off"
+            {...register("image", {
+              validate: (value) =>
+                isValidImageUrl(value) || "Введите корректный URL изображения",
+            })}
+          />
+          {errors.image && (
+            <span className="field-error">{errors.image.message}</span>
+          )}
+        </label>
         <label>
           <input
             type="password"
@@ -152,29 +181,15 @@ const SettingsPage = () => {
             <span className="field-error">{errors.password.message}</span>
           )}
         </label>
-        <label>
-          <input
-            type="url"
-            placeholder="URL of profile picture"
-            aria-label="URL of profile picture"
-            autoComplete="off"
-            {...register("image", {
-              validate: (value) =>
-                isValidImageUrl(value) || "Введите корректный URL изображения",
-            })}
-          />
-          {errors.image && (
-            <span className="field-error">{errors.image.message}</span>
-          )}
-        </label>
 
-        <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Сохраняем…" : "Сохранить изменения"}
+        <button type="submit" disabled={isSubmitting} className="save-button">
+          {isSubmitting ? "Сохраняем…" : "Update Settings"}
         </button>
         <button type="button" className="logout-button" onClick={handleLogoutClick}>
           Logout
         </button>
       </form>
+
     </main>
   );
 };

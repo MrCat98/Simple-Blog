@@ -523,6 +523,23 @@ body {
  align-items: center;
  flex-direction: column;
  gap: 10px;
+  h1{
+    color: #ffffff;
+    font-family: "Titillium Web";
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 32px;
+    line-height: 36px;
+ }
+}
+
+.profile-page__avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid #61bb61;
+  background-color: #ffffff;
+  object-fit: cover;
 }
 
 .settings-page {
@@ -530,6 +547,64 @@ body {
   display: flex;
   justify-content: center;
   padding: 48px 16px;
+}
+
+.new-post-page {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 48px 16px;
+}
+
+.new-post-form {
+  width: min(100%, 760px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.new-post-form h1 {
+  color: #333333;
+  font-size: 36px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.new-post-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.new-post-form input,
+.new-post-form textarea {
+  width: 100%;
+  border: 1px solid #aaaaaa;
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: #333333;
+  font: inherit;
+}
+
+.new-post-form textarea {
+  resize: vertical;
+}
+
+.new-post-form button {
+  align-self: flex-end;
+  min-width: 180px;
+  height: 43px;
+  border: 1px solid #61bb61;
+  border-radius: 8px;
+  color: #ffffff;
+  background-color: #61bb61;
+  font: 400 18px "Source Sans 3", sans-serif;
+  cursor: pointer;
+}
+
+.new-post-form button:disabled {
+  cursor: wait;
+  opacity: 0.7;
 }
 
 .settings-form {
@@ -570,7 +645,7 @@ body {
 }
 
 .settings-form button {
-  align-self: flex-end;
+  align-self: flex;
   min-width: 180px;
   height: 43px;
   border: 1px solid #61bb61;
@@ -584,6 +659,15 @@ body {
 .settings-form button:disabled {
   cursor: wait;
   opacity: 0.7;
+}
+
+.settings-form .save-button{
+  max-width: 144px;
+  min-width: 120px;
+  height: 43px;
+  border: 1px solid transparent;
+  border-radius:8px;
+  padding: 10px 12px;
 }
 
 .settings-form .logout-button {

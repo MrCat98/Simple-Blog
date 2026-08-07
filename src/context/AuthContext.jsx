@@ -1,6 +1,6 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { AuthContext } from "./authContextDefinition";
 
-const AuthContext = createContext();
 const API_URL = "https://realworld.habsida.net/api";
 
 export const AuthProvider = ({ children }) => {
@@ -130,5 +130,3 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
-export const useAuth = () => useContext(AuthContext);

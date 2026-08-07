@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useAuth } from "../context/AuthContext"; // Импорт хука
+import { useAuth } from "../context/useAuth"; // Импорт хука
 import { useNavigate } from "react-router-dom";
 
 function SignUpPage() {

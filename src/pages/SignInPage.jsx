@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/useAuth";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -30,12 +30,7 @@ const SignIn = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="signin--form" noValidate>
         <h1>Sign In</h1>
         {errors.root && (
-          <div className="signin-error">
-            <p className="form-message form-message--error">{errors.root.message}</p>
-            <p>
-              Нет профиля? <Link to="/signup">Зарегистрироваться</Link>
-            </p>
-          </div>
+          <p className="form-message form-message--error">{errors.root.message}</p>
         )}
 
         <label>

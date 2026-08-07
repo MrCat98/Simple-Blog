@@ -2,14 +2,24 @@ import penIcon from "../assets/pen.svg";
 import settingsIcon from "../assets/settings.svg";
 import profileIcon from "../assets/user.svg";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/useAuth";
 
 const Navigation = () => {
-  const links = [
-    { path: "/", label: "Home", icon: null },
-    { path: "/new-post", label: "New Post", icon: penIcon },
-    { path: "/settings", label: "Settings", icon: settingsIcon },
-    { path: "/profile", label: "Profile", icon: profileIcon },
-  ];
+  const { isAuthenticated, user } = useAuth();
+  const links = [{ path: "/", label: "Home", icon: null }];
+
+  if (isAuthenticated) {
+    links.push(
+      { path: "/new-post", label: "New Post", icon: penIcon },
+      { path: "/settings", label: "Settings", icon: settingsIcon },
+      { path: "/profile", label: user?.username || "Profile", icon: profileIcon },
+    );
+  } else {
+    links.push(
+      { path: "/signin", label: "Sign In", icon: null },
+      { path: "/signup", label: "Sign Up", icon: null },
+    );
+  }
 
   return (
     <nav className="navigation">
