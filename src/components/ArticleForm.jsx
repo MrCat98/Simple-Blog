@@ -1,6 +1,12 @@
 import PropTypes from "prop-types";
 
-const COMMON_TAGS = ["react", "javascript", "webdev", "programming", "tutorial"];
+const COMMON_TAGS = [
+  "react",
+  "javascript",
+  "webdev",
+  "programming",
+  "tutorial",
+];
 
 const ArticleForm = ({
   onSubmit,
@@ -24,57 +30,64 @@ const ArticleForm = ({
   };
 
   return (
-  <form className="new-post-form" onSubmit={onSubmit} noValidate>
-    {serverError && <p className="form-message form-message--error">{serverError}</p>}
+    <form className="new-post-form" onSubmit={onSubmit} noValidate>
+      {serverError && (
+        <p className="form-message form-message--error">{serverError}</p>
+      )}
 
-    <label>
-      <input
-        type="text"
-        placeholder="Title"
-        {...register("title", { required: "Введите заголовок статьи" })}
-      />
-      {errors.title && <span className="field-error">{errors.title.message}</span>}
-    </label>
+      <label>
+        <input
+          type="text"
+          placeholder="Title"
+          {...register("title", { required: "Введите заголовок статьи" })}
+        />
+        {errors.title && (
+          <span className="field-error">{errors.title.message}</span>
+        )}
+      </label>
 
-    <label>
-      <input
-        type="text"
-        placeholder="Short description"
-        {...register("description", { required: "Введите краткое описание" })}
-      />
-      {errors.description && <span className="field-error">{errors.description.message}</span>}
-    </label>
+      <label>
+        <input
+          type="text"
+          placeholder="Short description"
+          {...register("description", { required: "Введите краткое описание" })}
+        />
+        {errors.description && (
+          <span className="field-error">{errors.description.message}</span>
+        )}
+      </label>
 
-    <label>
-      <textarea
-        rows="8"
-        placeholder="Input your text"
-        {...register("body", { required: "Введите текст статьи" })}
-      />
-      {errors.body && <span className="field-error">{errors.body.message}</span>}
-    </label>
+      <label>
+        <textarea
+          rows="8"
+          placeholder="Input your text"
+          {...register("body", { required: "Введите текст статьи" })}
+        />
+        {errors.body && (
+          <span className="field-error">{errors.body.message}</span>
+        )}
+      </label>
 
-    <label>
-      <span>Tags</span>
-      <div className="tags-picker">
-        {COMMON_TAGS.map((tag) => (
-          <button
-            key={tag}
-            type="button"
-            className={`tag-option${selectedTags.includes(tag) ? " tag-option--active" : ""}`}
-            onClick={() => toggleTag(tag)}
-          >
-            {tag}
-          </button>
-        ))}
-      </div>
-      <input type="hidden" {...register("tags")} />
-    </label>
+      <label>
+        <span>Tags</span>
+        <div className="tags-picker">
+          {COMMON_TAGS.map((tag) => (
+            <button
+              key={tag}
+              type="button"
+              className={`tag-option${selectedTags.includes(tag) ? " tag-option--active" : ""}`}
+              onClick={() => toggleTag(tag)}>
+              {tag}
+            </button>
+          ))}
+        </div>
+        <input type="hidden" {...register("tags")} />
+      </label>
 
-    <button type="submit" disabled={isSubmitting} className="submit-button">
-      {isSubmitting ? "Публикуем…" : "Publish Article"}
-    </button>
-  </form>
+      <button type="submit" disabled={isSubmitting} className="submit-button">
+        {isSubmitting ? "Публикуем…" : "Publish Article"}
+      </button>
+    </form>
   );
 };
 

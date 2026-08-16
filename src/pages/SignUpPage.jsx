@@ -27,9 +27,12 @@ function SignUpPage() {
       console.error("Ошибка регистрации:", apiErrors);
 
       Object.entries(apiErrors || {}).forEach(([field, messages]) => {
-        const apiMessage = Array.isArray(messages) ? messages.join(", ") : messages;
+        const apiMessage = Array.isArray(messages)
+          ? messages.join(", ")
+          : messages;
         const message =
-          ["username", "email"].includes(field) && /taken|exists|already/i.test(apiMessage)
+          ["username", "email"].includes(field) &&
+          /taken|exists|already/i.test(apiMessage)
             ? "Такой пользователь уже существует"
             : apiMessage;
         if (["username", "email", "password"].includes(field)) {
@@ -58,14 +61,15 @@ function SignUpPage() {
         <input
           {...register("email", {
             required: "Введите email",
-            pattern: { value: /^\S+@\S+\.\S+$/, message: "Введите корректный email" },
+            pattern: {
+              value: /^\S+@\S+\.\S+$/,
+              message: "Введите корректный email",
+            },
           })}
           type="email"
           placeholder="Email address"
         />
-        {errors.email && (
-          <p style={{ color: "red" }}>{errors.email.message}</p>
-        )}
+        {errors.email && <p style={{ color: "red" }}>{errors.email.message}</p>}
         <input
           {...register("password", {
             required: "Введите пароль",

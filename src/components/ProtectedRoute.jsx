@@ -2,20 +2,20 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../context/useAuth"; // Импортируем хук
 
 const ProtectedRoute = () => {
-    const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading } = useAuth();
 
-    // Ждем, пока завершится проверка токена при загрузке
-    if (isLoading) {
-        return <div>Загрузка...</div>; 
-    }
+  // Ждем, пока завершится проверка токена при загрузке
+  if (isLoading) {
+    return <div>Загрузка...</div>;
+  }
 
-    // Если не авторизован — на страницу входа
-    if (!isAuthenticated) {
-        return <Navigate to="/signin" replace />;
-    }
+  // Если не авторизован — на страницу входа
+  if (!isAuthenticated) {
+    return <Navigate to="/signin" replace />;
+  }
 
-    // Если авторизован — показываем вложенные роуты
-    return <Outlet />;
+  // Если авторизован — показываем вложенные роуты
+  return <Outlet />;
 };
 
 export default ProtectedRoute;

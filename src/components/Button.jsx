@@ -7,8 +7,7 @@ const Button = ({ onHandleClick, likes, liked = false }) => {
       type="button"
       className={`Likes-button${liked ? " liked" : ""}`}
       onClick={onHandleClick}
-      aria-pressed={liked}
-    >
+      aria-pressed={liked}>
       <img src={like} alt="like" />
       {likes}
     </button>

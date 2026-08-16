@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Userinfo from "../components/UserInfo";
 import Tags from "../components/Tag";
-import LoadingArrow from "../assets/refresh.svg"
+import LoadingArrow from "../assets/refresh.svg";
 import { useAuth } from "../context/useAuth";
 
 const ArticlePage = () => {
@@ -62,7 +62,12 @@ const ArticlePage = () => {
   };
 
   if (!article) {
-    return <div className="loading-wrapper"> <img src={LoadingArrow} alt="Loading"/> <p>Loading...</p></div>;
+    return (
+      <div className="loading-wrapper">
+        {" "}
+        <img src={LoadingArrow} alt="Loading" /> <p>Loading...</p>
+      </div>
+    );
   }
 
   return (
@@ -80,9 +85,9 @@ const ArticlePage = () => {
           <Userinfo article={article} formatDate={formatDate} />
           <button
             className={`Favorite-Button${article.favorited ? " liked" : ""}`}
-            onClick={toggleLike}
-          >
-            {article.favorited ? "Unfavorite article" : "Favorite article"} ({article.favoritesCount})
+            onClick={toggleLike}>
+            {article.favorited ? "Unfavorite article" : "Favorite article"} (
+            {article.favoritesCount})
           </button>
         </section>
       </div>

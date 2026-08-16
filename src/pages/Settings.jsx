@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
 
-
 const eName = "Минимум 3,максимум 20 символов";
 
 const getApiError = (errors) => {
@@ -108,10 +107,10 @@ const SettingsPage = () => {
             aria-label="Username"
             autoComplete="off"
             {...register("username", {
-            required: "Введите имя пользователя",
-            minLength: { value: 3, message: eName },
-            maxLength: { value: 20, message: eName },
-          })}
+              required: "Введите имя пользователя",
+              minLength: { value: 3, message: eName },
+              maxLength: { value: 20, message: eName },
+            })}
           />
           {errors.username && (
             <span className="field-error">{errors.username.message}</span>
@@ -185,11 +184,13 @@ const SettingsPage = () => {
         <button type="submit" disabled={isSubmitting} className="save-button">
           {isSubmitting ? "Сохраняем…" : "Update Settings"}
         </button>
-        <button type="button" className="logout-button" onClick={handleLogoutClick}>
+        <button
+          type="button"
+          className="logout-button"
+          onClick={handleLogoutClick}>
           Logout
         </button>
       </form>
-
     </main>
   );
 };

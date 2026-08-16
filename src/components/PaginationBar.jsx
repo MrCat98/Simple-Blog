@@ -7,8 +7,7 @@ const PaginationBar = ({ page, setPage, totalPages }) => {
         <button
           key={num}
           className={page === num ? "active" : ""}
-          onClick={() => setPage(num)}
-        >
+          onClick={() => setPage(num)}>
           {num}
         </button>
       ))}

@@ -27,10 +27,15 @@ const SignIn = () => {
 
   return (
     <div className="signin-form--wrapper">
-      <form onSubmit={handleSubmit(onSubmit)} className="signin--form" noValidate>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="signin--form"
+        noValidate>
         <h1>Sign In</h1>
         {errors.root && (
-          <p className="form-message form-message--error">{errors.root.message}</p>
+          <p className="form-message form-message--error">
+            {errors.root.message}
+          </p>
         )}
 
         <label>
@@ -41,10 +46,15 @@ const SignIn = () => {
             autoComplete="email"
             {...register("email", {
               required: "Введите email",
-              pattern: { value: /^\S+@\S+\.\S+$/, message: "Введите корректный email" },
+              pattern: {
+                value: /^\S+@\S+\.\S+$/,
+                message: "Введите корректный email",
+              },
             })}
           />
-          {errors.email && <span className="field-error">{errors.email.message}</span>}
+          {errors.email && (
+            <span className="field-error">{errors.email.message}</span>
+          )}
         </label>
 
         <label>
@@ -55,11 +65,16 @@ const SignIn = () => {
             autoComplete="current-password"
             {...register("password", { required: "Введите пароль" })}
           />
-          {errors.password && <span className="field-error">{errors.password.message}</span>}
+          {errors.password && (
+            <span className="field-error">{errors.password.message}</span>
+          )}
         </label>
 
         <div className="signin--button--wrapper">
-          <button type="submit" className="signIn--button" disabled={isSubmitting}>
+          <button
+            type="submit"
+            className="signIn--button"
+            disabled={isSubmitting}>
             {isSubmitting ? "Входим…" : "Sign In"}
           </button>
         </div>

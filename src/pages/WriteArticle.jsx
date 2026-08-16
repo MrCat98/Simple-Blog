@@ -10,7 +10,10 @@ const getApiError = (errors) => {
   }
 
   const message = Object.entries(errors)
-    .map(([field, messages]) => `${field}: ${Array.isArray(messages) ? messages.join(", ") : messages}`)
+    .map(
+      ([field, messages]) =>
+        `${field}: ${Array.isArray(messages) ? messages.join(", ") : messages}`,
+    )
     .join(". ");
 
   if (message.includes("UNIQUE constraint failed: articles.slug")) {
@@ -43,7 +46,9 @@ const NewPostPage = () => {
 
     const fetchArticle = async () => {
       try {
-        const res = await fetch(`https://realworld.habsida.net/api/articles/${slug}`);
+        const res = await fetch(
+          `https://realworld.habsida.net/api/articles/${slug}`,
+        );
         if (!res.ok) {
           throw new Error("Ошибка " + res.status);
         }

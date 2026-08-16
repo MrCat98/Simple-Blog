@@ -3,9 +3,11 @@ const Tags = ({ tags }) => {
 
   return (
     <ul className="tags">
-      {tags.filter(tag=>tag!==null).map((tag) => (
-        <li key={tag}>{tag}</li>
-      ))}
+      {tags
+        .filter((tag) => tag !== null)
+        .map((tag) => (
+          <li key={tag}>{tag}</li>
+        ))}
     </ul>
   );
 };

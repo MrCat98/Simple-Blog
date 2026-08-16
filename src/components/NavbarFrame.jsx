@@ -12,7 +12,11 @@ const Navigation = () => {
     links.push(
       { path: "/new-post", label: "New Post", icon: penIcon },
       { path: "/settings", label: "Settings", icon: settingsIcon },
-      { path: "/profile", label: user?.username || "Profile", icon: profileIcon },
+      {
+        path: "/profile",
+        label: user?.username || "Profile",
+        icon: profileIcon,
+      },
     );
   } else {
     links.push(
