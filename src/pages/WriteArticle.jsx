@@ -9,9 +9,15 @@ const getApiError = (errors) => {
     return "Не удалось опубликовать статью. Попробуйте ещё раз.";
   }
 
-  return Object.entries(errors)
+  const message = Object.entries(errors)
     .map(([field, messages]) => `${field}: ${Array.isArray(messages) ? messages.join(", ") : messages}`)
     .join(". ");
+
+  if (message.includes("UNIQUE constraint failed: articles.slug")) {
+    return "Статья с таким заголовком уже существует. Попробуйте изменить заголовок.";
+  }
+
+  return message;
 };
 
 const NewPostPage = () => {

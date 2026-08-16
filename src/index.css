@@ -613,6 +613,11 @@ body {
   justify-content: center;
 }
 
+.tag-option:hover {
+    background-color: #61bb61;
+    color: white;
+  }
+
 .new-post-form .submit-button {
   align-self: flex-end;
   min-width: 180px;
