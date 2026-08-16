@@ -1,14 +1,15 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Userinfo from "../components/UserInfo";
 import Tags from "../components/Tag";
 import LoadingArrow from "../assets/refresh.svg"
+import { useAuth } from "../context/useAuth";
 
 const ArticlePage = () => {
   const { slug } = useParams();
-  console.log("slug", slug);
+  const navigate = useNavigate();
+  const { isAuthenticated, favoriteArticle, unfavoriteArticle } = useAuth();
   const [article, setArticle] = useState(null);
-  console.log(article);
 
   useEffect(() => {
     const fetchArticle = async () => {
@@ -40,6 +41,26 @@ const ArticlePage = () => {
     });
   };
 
+  const toggleLike = async () => {
+    if (!isAuthenticated) {
+      navigate("/signin");
+      return;
+    }
+
+    try {
+      const updated = article.favorited
+        ? await unfavoriteArticle(slug)
+        : await favoriteArticle(slug);
+      setArticle((prev) => ({
+        ...prev,
+        favorited: updated.favorited,
+        favoritesCount: updated.favoritesCount,
+      }));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   if (!article) {
     return <div className="loading-wrapper"> <img src={LoadingArrow} alt="Loading"/> <p>Loading...</p></div>;
   }
@@ -57,7 +78,12 @@ const ArticlePage = () => {
         <Tags tags={article.tagList} />
         <section className="Article__User--Submit">
           <Userinfo article={article} formatDate={formatDate} />
-          <button className="Favorite-Button">Favorite article</button>
+          <button
+            className={`Favorite-Button${article.favorited ? " liked" : ""}`}
+            onClick={toggleLike}
+          >
+            {article.favorited ? "Unfavorite article" : "Favorite article"} ({article.favoritesCount})
+          </button>
         </section>
       </div>
     </div>

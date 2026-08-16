@@ -107,21 +107,86 @@ export const AuthProvider = ({ children }) => {
     return data.article;
   };
 
+  const updateArticle = async (slug, articleData) => {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`${API_URL}/articles/${slug}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+      },
+      body: JSON.stringify({ article: articleData }),
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw data.errors;
+    }
+
+    return data.article;
+  };
+
+  const favoriteArticle = async (slug) => {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`${API_URL}/articles/${slug}/favorite`, {
+      method: "POST",
+      headers: { Authorization: `Token ${token}` },
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw data.errors;
+    }
+
+    return data.article;
+  };
+
+  const unfavoriteArticle = async (slug) => {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`${API_URL}/articles/${slug}/favorite`, {
+      method: "DELETE",
+      headers: { Authorization: `Token ${token}` },
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw data.errors;
+    }
+
+    return data.article;
+  };
+
+  const deleteArticle = async (slug) => {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`${API_URL}/articles/${slug}`, {
+      method: "DELETE",
+      headers: { Authorization: `Token ${token}` },
+    });
+
+    if (!response.ok) {
+      throw new Error("Не удалось удалить статью");
+    }
+  };
+
   const logout = () => {
     setUser(null);
     localStorage.removeItem("token");
   };
 
   // Одно объявление value со всеми функциями
-  const value = { 
-    user, 
-    isLoading, 
-    isAuthenticated: !!user, 
-    login, 
-    logout, 
+  const value = {
+    user,
+    isLoading,
+    isAuthenticated: !!user,
+    login,
+    logout,
     registerUser,
     updateUser,
-    createArticle
+    createArticle,
+    updateArticle,
+    deleteArticle,
+    favoriteArticle,
+    unfavoriteArticle
   };
 
   return (

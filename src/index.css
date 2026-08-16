@@ -514,23 +514,23 @@ body {
   }
 }
 
-.profile-page--wrapper{
+.profile-page--wrapper {
   width: 100%;
   min-height: 348px;
- background-color: #333333;
- display: flex;
- justify-content: center;
- align-items: center;
- flex-direction: column;
- gap: 10px;
-  h1{
+  background-color: #333333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  h1 {
     color: #ffffff;
     font-family: "Titillium Web";
     font-weight: 600;
     font-style: SemiBold;
     font-size: 32px;
     line-height: 36px;
- }
+  }
 }
 
 .profile-page__avatar {
@@ -557,10 +557,12 @@ body {
 }
 
 .new-post-form {
+  font-family: "Source Sans 3";
   width: min(100%, 760px);
   display: flex;
   flex-direction: column;
   gap: 16px;
+  color: #aaaaaa;
 }
 
 .new-post-form h1 {
@@ -590,7 +592,28 @@ body {
   resize: vertical;
 }
 
-.new-post-form button {
+.tags-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-family: "Source Sans 3";
+  color: white;
+}
+
+.tag-option {
+   font-family: "Source Sans 3";
+   color: #AAAAAA;
+  min-width: 53px;
+  height: 20px;
+  border-radius: 16px;
+  border: 1px solid #AAAAAA;
+  padding: 6px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-post-form .submit-button {
   align-self: flex-end;
   min-width: 180px;
   height: 43px;
@@ -598,7 +621,9 @@ body {
   border-radius: 8px;
   color: #ffffff;
   background-color: #61bb61;
-  font: 400 18px "Source Sans 3", sans-serif;
+  font:
+    400 18px "Source Sans 3",
+    sans-serif;
   cursor: pointer;
 }
 
@@ -652,7 +677,9 @@ body {
   border-radius: 8px;
   color: #ffffff;
   background-color: #61bb61;
-  font: 400 18px "Source Sans 3", sans-serif;
+  font:
+    400 18px "Source Sans 3",
+    sans-serif;
   cursor: pointer;
 }
 
@@ -661,12 +688,12 @@ body {
   opacity: 0.7;
 }
 
-.settings-form .save-button{
+.settings-form .save-button {
   max-width: 144px;
   min-width: 120px;
   height: 43px;
   border: 1px solid transparent;
-  border-radius:8px;
+  border-radius: 8px;
   padding: 10px 12px;
 }
 

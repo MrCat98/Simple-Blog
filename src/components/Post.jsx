@@ -3,7 +3,7 @@ import Userinfo from "./UserInfo";
 import Button from "./Button";
 import Article from "./Article";
 
-const PostList = ({ handleClick, likes, articles, formatDate }) => {
+const PostList = ({ handleClick, articles, formatDate }) => {
   return (
     <ul className="postList">
       {articles.map((article) => (
@@ -13,7 +13,8 @@ const PostList = ({ handleClick, likes, articles, formatDate }) => {
 
             <Button
               onHandleClick={() => handleClick(article.slug)}
-              likes={likes[article.slug] || 0}
+              likes={article.favoritesCount || 0}
+              liked={article.favorited}
             />
           </div>
 
