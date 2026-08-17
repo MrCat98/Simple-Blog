@@ -2,8 +2,11 @@ import Tags from "./Tag";
 import Userinfo from "./UserInfo";
 import Button from "./Button";
 import Article from "./Article";
+import { useAuth } from "../context/useAuth";
 
 const PostList = ({ handleClick, articles, formatDate }) => {
+  const { user } = useAuth();
+
   return (
     <ul className="postList">
       {articles.map((article) => (
@@ -11,11 +14,13 @@ const PostList = ({ handleClick, articles, formatDate }) => {
           <div className="postHeading">
             <Userinfo article={article} formatDate={formatDate} />
 
-            <Button
-              onHandleClick={() => handleClick(article.slug)}
-              likes={article.favoritesCount || 0}
-              liked={article.favorited}
-            />
+            {user?.username !== article.author.username && (
+              <Button
+                onHandleClick={() => handleClick(article.slug)}
+                likes={article.favoritesCount || 0}
+                liked={article.favorited}
+              />
+            )}
           </div>
 
           <article className="postContent">

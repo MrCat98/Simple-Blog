@@ -365,6 +365,54 @@ body {
   }
 }
 
+.Delete-Button {
+  background-color: #e74c3c !important;
+}
+
+.delete-modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+
+.delete-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 280px;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  color: #333333;
+  font-family: "Source Sans 3";
+
+  button {
+    width: auto;
+    height: 32px;
+    padding: 0 16px;
+    background-color: #61bb61;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-family: "Source Sans 3";
+    cursor: pointer;
+  }
+}
+
+.delete-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.delete-modal__confirm {
+  background-color: #e74c3c !important;
+}
+
 .loading-wrapper {
   color: #61bb61;
   display: flex;

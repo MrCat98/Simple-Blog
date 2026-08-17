@@ -8,8 +8,10 @@ import { useAuth } from "../context/useAuth";
 const ArticlePage = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const { isAuthenticated, favoriteArticle, unfavoriteArticle } = useAuth();
+  const { user, isAuthenticated, favoriteArticle, unfavoriteArticle, deleteArticle } = useAuth();
   const [article, setArticle] = useState(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     const fetchArticle = async () => {
@@ -23,7 +25,6 @@ const ArticlePage = () => {
         }
 
         const data = await res.json();
-        console.log(data);
         setArticle(data.article);
       } catch (err) {
         console.error(err);
@@ -61,6 +62,17 @@ const ArticlePage = () => {
     }
   };
 
+  const handleDelete = async () => {
+    setIsDeleting(true);
+    try {
+      await deleteArticle(slug);
+      navigate("/");
+    } catch (err) {
+      console.error(err);
+      setIsDeleting(false);
+    }
+  };
+
   if (!article) {
     return (
       <div className="loading-wrapper">
@@ -83,14 +95,56 @@ const ArticlePage = () => {
         <Tags tags={article.tagList} />
         <section className="Article__User--Submit">
           <Userinfo article={article} formatDate={formatDate} />
-          <button
-            className={`Favorite-Button${article.favorited ? " liked" : ""}`}
-            onClick={toggleLike}>
-            {article.favorited ? "Unfavorite article" : "Favorite article"} (
-            {article.favoritesCount})
-          </button>
+          {user?.username !== article.author.username && (
+            <button
+              className={`Favorite-Button${article.favorited ? " liked" : ""}`}
+              onClick={toggleLike}>
+              {article.favorited ? "Unfavorite article" : "Favorite article"} (
+              {article.favoritesCount})
+            </button>
+          )}
+
+          {isAuthenticated && user?.username === article.author.username && (
+            <>
+              <button
+                type="button"
+                className="Edit-Button"
+                onClick={() => navigate(`/new-post/${slug}`)}>
+                Edit article
+              </button>
+              <button
+                type="button"
+                className="Delete-Button"
+                onClick={() => setIsDeleteModalOpen(true)}>
+                Delete article
+              </button>
+            </>
+          )}
         </section>
       </div>
+
+      {isDeleteModalOpen && (
+        <div className="delete-modal-overlay">
+          <div className="delete-modal">
+            <p>Удалить статью «{article.title}»?</p>
+            <div className="delete-modal__actions">
+              <button
+                type="button"
+                onClick={() => setIsDeleteModalOpen(false)}
+                disabled={isDeleting}>
+                Отмена
+              </button>
+              <button
+                type="button"
+                className="delete-modal__confirm"
+                onClick={handleDelete}
+                disabled={isDeleting}>
+                {isDeleting ? "Удаляем…" : "Удалить"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

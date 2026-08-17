@@ -31,6 +31,7 @@ const App = () => {
                 element={<ProfilePage  />}
               />
               <Route path="new-post" element={<NewPostPage />} />
+              <Route path="new-post/:slug" element={<NewPostPage />} />
             </Route>
           </Route>
           <Route path="*" element={<NotFountPage />} />
