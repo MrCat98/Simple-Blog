@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const PaginationBar = ({ page, setPage, totalPages }) => {
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
@@ -13,6 +15,12 @@ const PaginationBar = ({ page, setPage, totalPages }) => {
       ))}
     </div>
   );
+};
+
+PaginationBar.propTypes = {
+  page: PropTypes.number.isRequired,
+  setPage: PropTypes.func.isRequired,
+  totalPages: PropTypes.number.isRequired,
 };
 
 export default PaginationBar;

@@ -181,10 +181,11 @@ body {
   gap: 16px;
 }
 .profile-image {
-  min-width: 24px;
-  min-height: 24px;
-  border-radius: 16px;
-  padding: 16px 8px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #ffffff;
 }
 
 .pagination-bar {
@@ -226,11 +227,6 @@ body {
     font-family: "Source Sans 3", monospace;
     font-weight: 600;
     font-size: 16px;
-  }
-
-  img {
-    min-width: 24px;
-    min-height: 24px;
   }
 
   p {

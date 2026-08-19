@@ -1,6 +1,7 @@
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const BannerArticle = ({ articleDescription, articleTitle, article }) => {
+const Article = ({ articleDescription, articleTitle, article }) => {
   return (
     <div className="Article">
       <Link to={`/articlepage/${article.slug}`} className="Article-Link">
@@ -11,4 +12,12 @@ const BannerArticle = ({ articleDescription, articleTitle, article }) => {
   );
 };
 
-export default BannerArticle;
+Article.propTypes = {
+  articleDescription: PropTypes.string,
+  articleTitle: PropTypes.string,
+  article: PropTypes.shape({
+    slug: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
+export default Article;

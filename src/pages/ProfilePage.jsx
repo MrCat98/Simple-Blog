@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/useAuth";
 import profileIcon from "../assets/user.svg";
-import PostList from "../components/Post";
+import PostList from "../components/PostList";
 
 const ProfilePage = () => {
   const { user, isAuthenticated, favoriteArticle, unfavoriteArticle } =
@@ -80,7 +80,7 @@ const ProfilePage = () => {
       </div>
       {articles.length > 0 && (
         <PostList
-          handleClick={toggleLike}
+          onToggleLike={toggleLike}
           articles={articles}
           formatDate={formatDate}
         />

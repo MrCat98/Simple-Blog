@@ -1,10 +1,11 @@
+import PropTypes from "prop-types";
 import Tags from "./Tag";
-import Userinfo from "./UserInfo";
+import UserInfo from "./UserInfo";
 import Button from "./Button";
 import Article from "./Article";
 import { useAuth } from "../context/useAuth";
 
-const PostList = ({ handleClick, articles, formatDate }) => {
+const PostList = ({ onToggleLike, articles, formatDate }) => {
   const { user } = useAuth();
 
   return (
@@ -12,11 +13,11 @@ const PostList = ({ handleClick, articles, formatDate }) => {
       {articles.map((article) => (
         <li key={article.slug} className="post">
           <div className="postHeading">
-            <Userinfo article={article} formatDate={formatDate} />
+            <UserInfo article={article} formatDate={formatDate} />
 
             {user?.username !== article.author.username && (
               <Button
-                onHandleClick={() => handleClick(article.slug)}
+                onClick={() => onToggleLike(article.slug)}
                 likes={article.favoritesCount || 0}
                 liked={article.favorited}
               />
@@ -35,6 +36,24 @@ const PostList = ({ handleClick, articles, formatDate }) => {
       ))}
     </ul>
   );
+};
+
+PostList.propTypes = {
+  onToggleLike: PropTypes.func.isRequired,
+  articles: PropTypes.arrayOf(
+    PropTypes.shape({
+      slug: PropTypes.string.isRequired,
+      favoritesCount: PropTypes.number,
+      favorited: PropTypes.bool,
+      title: PropTypes.string,
+      description: PropTypes.string,
+      tagList: PropTypes.arrayOf(PropTypes.string),
+      author: PropTypes.shape({
+        username: PropTypes.string.isRequired,
+      }).isRequired,
+    }),
+  ).isRequired,
+  formatDate: PropTypes.func.isRequired,
 };
 
 export default PostList;

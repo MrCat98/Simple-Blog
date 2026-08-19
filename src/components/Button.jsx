@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 import like from "../assets/like.svg";
 
-const Button = ({ onHandleClick, likes, liked = false }) => {
+const Button = ({ onClick, likes, liked = false }) => {
   return (
     <button
       type="button"
       className={`Likes-button${liked ? " liked" : ""}`}
-      onClick={onHandleClick}
+      onClick={onClick}
       aria-pressed={liked}>
       <img src={like} alt="like" />
       {likes}
@@ -15,7 +15,7 @@ const Button = ({ onHandleClick, likes, liked = false }) => {
 };
 
 Button.propTypes = {
-  onHandleClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   likes: PropTypes.number.isRequired,
   liked: PropTypes.bool,
 };

@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Navigation from "../components/NavbarFrame";
+import Navigation from "../components/Navigation";
 
 
 const MainLayout = ({log}) => {

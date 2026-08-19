@@ -1,4 +1,4 @@
-const bannerDefault = () => {
+const Default = () => {
   return (
     <div className="bannerDefault">
       <h2> Realworld Blog</h2>
@@ -7,4 +7,4 @@ const bannerDefault = () => {
   );
 };
 
-export default bannerDefault;
+export default Default;

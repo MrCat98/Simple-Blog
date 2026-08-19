@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Userinfo from "../components/UserInfo";
+import UserInfo from "../components/UserInfo";
 import Tags from "../components/Tag";
 import LoadingArrow from "../assets/refresh.svg";
 import { useAuth } from "../context/useAuth";
@@ -10,10 +10,14 @@ const ArticlePage = () => {
   const navigate = useNavigate();
   const { user, isAuthenticated, favoriteArticle, unfavoriteArticle, deleteArticle } = useAuth();
   const [article, setArticle] = useState(null);
+  const [error, setError] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
+    setArticle(null);
+    setError(null);
+
     const fetchArticle = async () => {
       try {
         const res = await fetch(
@@ -27,6 +31,7 @@ const ArticlePage = () => {
         const data = await res.json();
         setArticle(data.article);
       } catch (err) {
+        setError("Не удалось загрузить статью.");
         console.error(err);
       }
     };
@@ -73,6 +78,10 @@ const ArticlePage = () => {
     }
   };
 
+  if (error) {
+    return <h1>Ошибка: {error}</h1>;
+  }
+
   if (!article) {
     return (
       <div className="loading-wrapper">
@@ -87,14 +96,14 @@ const ArticlePage = () => {
       <div className="Article-wrapper">
         <header className="Article__header">
           <h1>{article.title}</h1>
-          <Userinfo article={article} formatDate={formatDate} />
+          <UserInfo article={article} formatDate={formatDate} />
         </header>
       </div>
       <div className="Article__Page--content--container">
         <p className="Article__text--content">{article.body}</p>
         <Tags tags={article.tagList} />
         <section className="Article__User--Submit">
-          <Userinfo article={article} formatDate={formatDate} />
+          <UserInfo article={article} formatDate={formatDate} />
           {user?.username !== article.author.username && (
             <button
               className={`Favorite-Button${article.favorited ? " liked" : ""}`}

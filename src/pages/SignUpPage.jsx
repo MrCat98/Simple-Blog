@@ -1,22 +1,22 @@
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { useAuth } from "../context/useAuth"; // Импорт хука
 import { useNavigate } from "react-router-dom";
 
 function SignUpPage() {
-  const ePass = "Минимум 6, максимум 20 символов";
-  const eName = "Минимум 3,максимум 20 символов";
+  const passwordLengthError = "Минимум 6, максимум 20 символов";
+  const usernameLengthError = "Минимум 3,максимум 20 символов";
 
   const {
     register,
     handleSubmit,
     setError,
-    watch,
+    control,
     formState: { errors },
   } = useForm();
   const { registerUser } = useAuth(); // Достаем функцию из контекста
   const navigate = useNavigate();
 
-  const password = watch("password");
+  const password = useWatch({ control, name: "password" });
 
   const onSubmit = async (data) => {
     try {
@@ -49,8 +49,8 @@ function SignUpPage() {
         <input
           {...register("username", {
             required: "Введите имя пользователя",
-            minLength: { value: 3, message: eName },
-            maxLength: { value: 20, message: eName },
+            minLength: { value: 3, message: usernameLengthError },
+            maxLength: { value: 20, message: usernameLengthError },
           })}
           placeholder="UserName"
           type="text"
@@ -73,8 +73,8 @@ function SignUpPage() {
         <input
           {...register("password", {
             required: "Введите пароль",
-            minLength: { value: 6, message: ePass },
-            maxLength: { value: 20, message: ePass },
+            minLength: { value: 6, message: passwordLengthError },
+            maxLength: { value: 20, message: passwordLengthError },
           })}
           type="password"
           placeholder="Password"

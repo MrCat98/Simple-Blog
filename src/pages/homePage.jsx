@@ -1,7 +1,7 @@
-import PostList from "../components/Post";
+import PostList from "../components/PostList";
 import PaginationBar from "../components/PaginationBar";
 import Default from "../components/Default";
-import Sidebar from "../components/SidebarPopularTags";
+import SidebarPopularTags from "../components/SidebarPopularTags";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
@@ -91,10 +91,10 @@ const HomePage = () => {
   return (
     <div className="homePage">
       <Default />
-      <Sidebar articles={articles} />
+      <SidebarPopularTags articles={articles} />
       <div className="content">
         <PostList
-          handleClick={toggleLike}
+          onToggleLike={toggleLike}
           articles={articles}
           formatDate={formatDate}
         />

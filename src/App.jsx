@@ -3,7 +3,7 @@ import ProfilePage from "./pages/ProfilePage";
 import SettingsPage from "./pages/Settings";
 import NotFountPage from "./pages/NotFountPage";
 import ArticlePage from "./pages/ArticlePage";
-import MainLayout from "./layouts/MainLayout";
+import MainLayout from "./Layouts/MainLayout";
 import SignUp from "./pages/SignUpPage";
 import SignIn from "./pages/SignInPage";
 import NewPostPage from "./pages/WriteArticle";

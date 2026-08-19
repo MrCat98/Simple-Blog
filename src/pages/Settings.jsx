@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
 
-const eName = "Минимум 3,максимум 20 символов";
+const usernameLengthError = "Минимум 3,максимум 20 символов";
 
 const getApiError = (errors) => {
   if (!errors || typeof errors !== "object") {
@@ -108,8 +108,8 @@ const SettingsPage = () => {
             autoComplete="off"
             {...register("username", {
               required: "Введите имя пользователя",
-              minLength: { value: 3, message: eName },
-              maxLength: { value: 20, message: eName },
+              minLength: { value: 3, message: usernameLengthError },
+              maxLength: { value: 20, message: usernameLengthError },
             })}
           />
           {errors.username && (

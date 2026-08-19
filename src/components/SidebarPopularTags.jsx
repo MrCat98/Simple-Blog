@@ -1,4 +1,6 @@
-const Sidebar = ({ articles }) => {
+import PropTypes from "prop-types";
+
+const SidebarPopularTags = ({ articles }) => {
   const tags = [
     ...new Set(
       articles
@@ -22,4 +24,12 @@ const Sidebar = ({ articles }) => {
   );
 };
 
-export default Sidebar;
+SidebarPopularTags.propTypes = {
+  articles: PropTypes.arrayOf(
+    PropTypes.shape({
+      tagList: PropTypes.arrayOf(PropTypes.string),
+    }),
+  ).isRequired,
+};
+
+export default SidebarPopularTags;

@@ -99,7 +99,6 @@ const NewPostPage = () => {
         errors={errors}
         isSubmitting={isSubmitting}
         serverError={serverError}
-        isEditing={isEditing}
         watch={watch}
         setValue={setValue}
       />
