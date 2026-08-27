@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import Tags from "./Tag";
-import UserInfo from "./UserInfo";
+import UserInfo from "./Userinfo";
 import Button from "./Button";
 import Article from "./Article";
 import { useAuth } from "../context/useAuth";
