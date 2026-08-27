@@ -579,7 +579,7 @@ body {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 300px) {
   .navigation {
     height: auto;
     min-height: 60px;
