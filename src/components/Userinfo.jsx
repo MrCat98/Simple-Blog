@@ -1,7 +1,15 @@
 import PropTypes from "prop-types";
 import prof from "../assets/Icon.svg";
 
-const UserInfo = ({ article, formatDate }) => {
+const formatDate = (date) => {
+  return new Date(date).toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+};
+
+const UserInfo = ({ article }) => {
   return (
     <div className="UserInfo">
       <img
@@ -30,7 +38,6 @@ UserInfo.propTypes = {
       image: PropTypes.string,
     }).isRequired,
   }).isRequired,
-  formatDate: PropTypes.func.isRequired,
 };
 
 export default UserInfo;

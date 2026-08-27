@@ -14,7 +14,7 @@ body {
   font-family: "Titillium Web", sans-serif;
   margin: 0 auto;
   padding: 0;
-  min-width: 850px;
+  min-width: 320px;
 }
 
 .homePage {
@@ -103,8 +103,9 @@ body {
 }
 
 .sidebar__popular-tags {
-  width: 800px;
-  height: 88px;
+  width: min(800px, calc(100% - 32px));
+  min-height: 88px;
+  height: auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -122,6 +123,7 @@ body {
 
 .tags {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 
   li {
@@ -146,10 +148,18 @@ body {
   }
 }
 
-.post {
-  width: 800px;
+.content {
+  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.post {
+  width:800px ;
+  display: flex;
+  flex-direction: column;
+
   gap: 12px;
   padding: 16px;
   margin-top: 20px;
@@ -161,9 +171,8 @@ body {
   display: flex;
   justify-content: space-between;
 }
-
 .Likes-button {
-  width: 77px;
+  min-width: 77px;
   height: 40px;
   display: flex;
   justify-content: center;
@@ -174,6 +183,17 @@ body {
   border: 1px solid #61bb61;
   border-radius: 16px;
   cursor: pointer;
+}
+
+.Likes-button.liked {
+  background-color: #61bb61;
+  color: #ffffff;
+}
+
+.Likes-button:focus-visible,
+.Article-Link:focus-visible {
+  outline: 3px solid #333333;
+  outline-offset: 3px;
 }
 
 .bannerUserinfo {
@@ -219,8 +239,8 @@ body {
 
 .UserInfo {
   display: flex;
-
   align-items: center;
+  gap: 12px;
 
   h4 {
     color: #61bb61;
@@ -254,6 +274,7 @@ body {
     line-height: 36px;
     color: #333333;
     text-decoration: none;
+    overflow-wrap: anywhere;
   }
 }
 
@@ -317,7 +338,7 @@ body {
 }
 
 .Article__header {
-  width: 590px;
+  width: min(590px, calc(100% - 32px));
 }
 .Article__text--content {
   font-family: "Source Sans 3";
@@ -325,19 +346,19 @@ body {
   font-size: 16px;
   line-height: 24px;
   color: #333333;
-  width: 570px;
+  width: min(570px, 100%);
 }
 .Article__Page--content--container {
-  width: 580px;
+  width: min(580px, calc(100% - 32px));
   gap: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 24px, 16px, 24px, 16px;
+  padding: 24px 16px;
 
   ul {
-    width: 570px;
+    width: 100%;
   }
 
   section {
@@ -555,6 +576,89 @@ body {
     color: rgb(255, 255, 255, 1);
     border: 1px solid rgb(97, 187, 97);
     background-color: rgb(97, 187, 97);
+  }
+}
+
+@media (max-width: 600px) {
+  .navigation {
+    height: auto;
+    min-height: 60px;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .navigation ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .bannerDefault {
+    height: auto;
+    min-height: 190px;
+    padding: 24px 16px;
+    text-align: center;
+  }
+
+  .bannerDefault h2 {
+    font-size: 40px;
+    line-height: 1.1;
+  }
+
+  .bannerDefault h3 {
+    font-size: 20px;
+    line-height: 1.3;
+  }
+
+  .post {
+    padding: 12px;
+  }
+
+  .postHeading {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .UserInfo {
+    min-width: 0;
+  }
+
+  .author-info {
+    min-width: 0;
+  }
+
+  .author-info h4 {
+    overflow-wrap: anywhere;
+  }
+
+  .Article h3 {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+
+  .Article-wrapper {
+    height: auto;
+    min-height: 220px;
+    margin-top: 0;
+    padding: 32px 0;
+  }
+
+  .Article__Page--content--container section {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .signin--form,
+  .signup--form {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+  }
+
+  .signin--form input,
+  .signup--form input {
+    width: 100%;
   }
 }
 

@@ -49,149 +49,21 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const registerUser = async (username, email, password) => {
-    const response = await fetch(`${API_URL}/users`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user: { username, email, password } }),
-    });
-    const data = await response.json();
-    if (response.ok) {
-      setUser(data.user);
-      localStorage.setItem("token", data.user.token);
-      return data.user;
-    } else {
-      throw data.errors;
-    }
-  };
-
-  const updateUser = async (userData) => {
-    const token = localStorage.getItem("token");
-    const response = await fetch(`${API_URL}/user`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`,
-      },
-      body: JSON.stringify({ user: userData }),
-    });
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw data.errors;
-    }
-
-    setUser(data.user);
-    if (data.user.token) {
-      localStorage.setItem("token", data.user.token);
-    }
-    return data.user;
-  };
-
-  const createArticle = async (articleData) => {
-    const token = localStorage.getItem("token");
-    const response = await fetch(`${API_URL}/articles`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`,
-      },
-      body: JSON.stringify({ article: articleData }),
-    });
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw data.errors;
-    }
-
-    return data.article;
-  };
-
-  const updateArticle = async (slug, articleData) => {
-    const token = localStorage.getItem("token");
-    const response = await fetch(`${API_URL}/articles/${slug}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`,
-      },
-      body: JSON.stringify({ article: articleData }),
-    });
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw data.errors;
-    }
-
-    return data.article;
-  };
-
-  const favoriteArticle = async (slug) => {
-    const token = localStorage.getItem("token");
-    const response = await fetch(`${API_URL}/articles/${slug}/favorite`, {
-      method: "POST",
-      headers: { Authorization: `Token ${token}` },
-    });
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw data.errors;
-    }
-
-    return data.article;
-  };
-
-  const unfavoriteArticle = async (slug) => {
-    const token = localStorage.getItem("token");
-    const response = await fetch(`${API_URL}/articles/${slug}/favorite`, {
-      method: "DELETE",
-      headers: { Authorization: `Token ${token}` },
-    });
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw data.errors;
-    }
-
-    return data.article;
-  };
-
-  const deleteArticle = async (slug) => {
-    const token = localStorage.getItem("token");
-    const response = await fetch(`${API_URL}/articles/${slug}`, {
-      method: "DELETE",
-      headers: { Authorization: `Token ${token}` },
-    });
-
-    if (!response.ok) {
-      throw new Error("Не удалось удалить статью");
-    }
-  };
-
   const logout = () => {
     setUser(null);
     localStorage.removeItem("token");
   };
 
-  // Одно объявление value со всеми функциями
   const value = {
     user,
     isLoading,
     isAuthenticated: !!user,
     login,
     logout,
-    registerUser,
-    updateUser,
-    createArticle,
-    updateArticle,
-    deleteArticle,
-    favoriteArticle,
-    unfavoriteArticle
+    setUser,
   };
 
   return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
   );
 };

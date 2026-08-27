@@ -5,11 +5,12 @@ import SidebarPopularTags from "../components/SidebarPopularTags";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
+import { favoriteArticle, unfavoriteArticle } from "../context/api";
 import LoadingArrow from "../assets/refresh.svg";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const { isAuthenticated, favoriteArticle, unfavoriteArticle } = useAuth();
+  const { isAuthenticated } = useAuth();
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -50,14 +51,6 @@ const HomePage = () => {
     );
   if (error) return <h1>Ошибка: {error}</h1>;
 
-  const formatDate = (date) => {
-    return new Date(date).toLocaleDateString("en-US", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
-  };
-
   const toggleLike = async (slug) => {
     if (!isAuthenticated) {
       navigate("/signin");
@@ -93,11 +86,7 @@ const HomePage = () => {
       <Default />
       <SidebarPopularTags articles={articles} />
       <div className="content">
-        <PostList
-          onToggleLike={toggleLike}
-          articles={articles}
-          formatDate={formatDate}
-        />
+        <PostList onToggleLike={toggleLike} articles={articles} />
         <PaginationBar page={page} setPage={setPage} totalPages={totalPages} />
       </div>
     </div>

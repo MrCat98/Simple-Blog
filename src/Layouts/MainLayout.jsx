@@ -1,14 +1,10 @@
 import { Outlet } from "react-router-dom";
 import Navigation from "../components/Navigation";
 
-
-const MainLayout = ({log}) => {
- 
-
-
+const MainLayout = () => {
   return (
     <div className="homePage">
-      <Navigation  log={log}/>
+      <Navigation />
       <Outlet />
     </div>
   );

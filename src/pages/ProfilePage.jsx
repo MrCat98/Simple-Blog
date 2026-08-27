@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/useAuth";
+import { favoriteArticle, unfavoriteArticle } from "../context/api";
 import profileIcon from "../assets/user.svg";
 import PostList from "../components/PostList";
 
 const ProfilePage = () => {
-  const { user, isAuthenticated, favoriteArticle, unfavoriteArticle } =
-    useAuth();
+  const { user, isAuthenticated } = useAuth();
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
@@ -26,14 +26,6 @@ const ProfilePage = () => {
 
     fetchOwnArticles();
   }, [user?.username]);
-
-  const formatDate = (date) => {
-    return new Date(date).toLocaleDateString("en-US", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
-  };
 
   const toggleLike = async (slug) => {
     if (!isAuthenticated) return;
@@ -79,11 +71,7 @@ const ProfilePage = () => {
         <h1>{user?.username}</h1>
       </div>
       {articles.length > 0 && (
-        <PostList
-          onToggleLike={toggleLike}
-          articles={articles}
-          formatDate={formatDate}
-        />
+        <PostList onToggleLike={toggleLike} articles={articles} />
       )}
     </>
   );

@@ -1,4 +1,7 @@
 import PropTypes from "prop-types";
+import Input from "./Input";
+import { FIELDS } from "./ArticleForm.fields";
+import { messages } from "../validation/messages";
 
 const COMMON_TAGS = [
   "react",
@@ -13,11 +16,11 @@ const ArticleForm = ({
   register,
   errors,
   isSubmitting,
-  serverError = "",
+  serverError,
   watch,
   setValue,
 }) => {
-  const selectedTags = (watch("tags") || "")
+  const selectedTags = watch("tags")
     .split(",")
     .map((tag) => tag.trim())
     .filter(Boolean);
@@ -35,33 +38,21 @@ const ArticleForm = ({
         <p className="form-message form-message--error">{serverError}</p>
       )}
 
-      <label>
-        <input
+      {FIELDS.map(({ name, placeholder, rules }) => (
+        <Input
+          key={name}
           type="text"
-          placeholder="Title"
-          {...register("title", { required: "Введите заголовок статьи" })}
+          placeholder={placeholder}
+          {...register(name, rules)}
+          error={errors[name]?.message}
         />
-        {errors.title && (
-          <span className="field-error">{errors.title.message}</span>
-        )}
-      </label>
-
-      <label>
-        <input
-          type="text"
-          placeholder="Short description"
-          {...register("description", { required: "Введите краткое описание" })}
-        />
-        {errors.description && (
-          <span className="field-error">{errors.description.message}</span>
-        )}
-      </label>
+      ))}
 
       <label>
         <textarea
           rows="8"
           placeholder="Input your text"
-          {...register("body", { required: "Введите текст статьи" })}
+          {...register("body", { required: messages.articleBodyRequired })}
         />
         {errors.body && (
           <span className="field-error">{errors.body.message}</span>

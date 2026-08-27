@@ -4,11 +4,16 @@ import UserInfo from "../components/UserInfo";
 import Tags from "../components/Tag";
 import LoadingArrow from "../assets/refresh.svg";
 import { useAuth } from "../context/useAuth";
+import {
+  favoriteArticle,
+  unfavoriteArticle,
+  deleteArticle,
+} from "../context/api";
 
 const ArticlePage = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const { user, isAuthenticated, favoriteArticle, unfavoriteArticle, deleteArticle } = useAuth();
+  const { user, isAuthenticated } = useAuth();
   const [article, setArticle] = useState(null);
   const [error, setError] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -38,14 +43,6 @@ const ArticlePage = () => {
 
     fetchArticle();
   }, [slug]);
-
-  const formatDate = (date) => {
-    return new Date(date).toLocaleDateString("en-US", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
-  };
 
   const toggleLike = async () => {
     if (!isAuthenticated) {
@@ -96,14 +93,14 @@ const ArticlePage = () => {
       <div className="Article-wrapper">
         <header className="Article__header">
           <h1>{article.title}</h1>
-          <UserInfo article={article} formatDate={formatDate} />
+          <UserInfo article={article} />
         </header>
       </div>
       <div className="Article__Page--content--container">
         <p className="Article__text--content">{article.body}</p>
         <Tags tags={article.tagList} />
         <section className="Article__User--Submit">
-          <UserInfo article={article} formatDate={formatDate} />
+          <UserInfo article={article} />
           {user?.username !== article.author.username && (
             <button
               className={`Favorite-Button${article.favorited ? " liked" : ""}`}

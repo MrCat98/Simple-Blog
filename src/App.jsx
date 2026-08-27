@@ -1,4 +1,4 @@
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/MainPage";
 import ProfilePage from "./pages/ProfilePage";
 import SettingsPage from "./pages/Settings";
 import NotFountPage from "./pages/NotFountPage";

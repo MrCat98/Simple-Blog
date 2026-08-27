@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
-
-const usernameLengthError = "Минимум 3,максимум 20 символов";
+import { updateUser } from "../context/api";
+import Input from "../components/Input";
+import { topFields, bottomFields } from "../context/Settings.fields";
 
 const getApiError = (errors) => {
   if (!errors || typeof errors !== "object") {
@@ -18,27 +19,16 @@ const getApiError = (errors) => {
     .join(". ");
 };
 
-const isValidImageUrl = (value) => {
-  if (!value) return true;
-
-  try {
-    const url = new URL(value);
-    return url.protocol === "http:" || url.protocol === "https:";
-  } catch {
-    return false;
-  }
-};
-
 const toFormValues = (user) => ({
-  image: user?.image || "",
-  username: user?.username || "",
-  bio: user?.bio || "",
-  email: user?.email || "",
-  password: "",
+  image: user?.image,
+  username: user?.username,
+  bio: user?.bio,
+  email: user?.email,
+  password: undefined,
 });
 
 const SettingsPage = () => {
-  const { user, updateUser, logout } = useAuth();
+  const { user, setUser, logout } = useAuth();
   const navigate = useNavigate();
   const [serverError, setServerError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -72,6 +62,7 @@ const SettingsPage = () => {
 
     try {
       const savedUser = await updateUser(updatedUser);
+      setUser(savedUser);
       reset(toFormValues(savedUser));
       setSuccessMessage("Настройки профиля сохранены.");
     } catch (apiErrors) {
@@ -100,40 +91,17 @@ const SettingsPage = () => {
           <p className="form-message form-message--success">{successMessage}</p>
         )}
 
-        <label>
-          <input
-            type="text"
-            placeholder="Username"
-            aria-label="Username"
+        {topFields.map(({ name, type, placeholder, ariaLabel, rules }) => (
+          <Input
+            key={name}
+            type={type}
+            placeholder={placeholder}
+            aria-label={ariaLabel}
             autoComplete="off"
-            {...register("username", {
-              required: "Введите имя пользователя",
-              minLength: { value: 3, message: usernameLengthError },
-              maxLength: { value: 20, message: usernameLengthError },
-            })}
+            {...register(name, rules)}
+            error={errors[name]?.message}
           />
-          {errors.username && (
-            <span className="field-error">{errors.username.message}</span>
-          )}
-        </label>
-        <label>
-          <input
-            type="email"
-            placeholder="Email Address"
-            aria-label="Email Address"
-            autoComplete="email"
-            {...register("email", {
-              required: "Укажите email",
-              pattern: {
-                value: /^\S+@\S+\.\S+$/,
-                message: "Введите корректный email",
-              },
-            })}
-          />
-          {errors.email && (
-            <span className="field-error">{errors.email.message}</span>
-          )}
-        </label>
+        ))}
 
         <label>
           <textarea
@@ -144,45 +112,21 @@ const SettingsPage = () => {
             {...register("bio")}
           />
         </label>
-        <label>
-          <input
-            type="url"
-            placeholder="Avatar image (URL)"
-            aria-label="Avatar image (URL)"
+
+        {bottomFields.map(({ name, type, placeholder, ariaLabel, rules }) => (
+          <Input
+            key={name}
+            type={type}
+            placeholder={placeholder}
+            aria-label={ariaLabel}
             autoComplete="off"
-            {...register("image", {
-              validate: (value) =>
-                isValidImageUrl(value) || "Введите корректный URL изображения",
-            })}
+            {...register(name, rules)}
+            error={errors[name]?.message}
           />
-          {errors.image && (
-            <span className="field-error">{errors.image.message}</span>
-          )}
-        </label>
-        <label>
-          <input
-            type="password"
-            placeholder="New Password"
-            aria-label="New Password"
-            autoComplete="off"
-            {...register("password", {
-              minLength: {
-                value: 6,
-                message: "Пароль должен содержать минимум 6 символов",
-              },
-              maxLength: {
-                value: 40,
-                message: "Пароль должен содержать максимум 40 символов",
-              },
-            })}
-          />
-          {errors.password && (
-            <span className="field-error">{errors.password.message}</span>
-          )}
-        </label>
+        ))}
 
         <button type="submit" disabled={isSubmitting} className="save-button">
-          {isSubmitting ? "Сохраняем…" : "Update Settings"}
+          {isSubmitting ? "Сохраняем…" : "Update"}
         </button>
         <button
           type="button"

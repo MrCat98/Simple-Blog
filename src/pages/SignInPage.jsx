@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
+import Input from "../components/Input";
+import { signInFields } from "../context/SignInPage.fields";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -38,37 +40,17 @@ const SignIn = () => {
           </p>
         )}
 
-        <label>
-          Email
-          <input
-            type="email"
-            placeholder="Email"
-            autoComplete="email"
-            {...register("email", {
-              required: "Введите email",
-              pattern: {
-                value: /^\S+@\S+\.\S+$/,
-                message: "Введите корректный email",
-              },
-            })}
+        {signInFields.map(({ name, label, type, placeholder, autoComplete, rules }) => (
+          <Input
+            key={name}
+            label={label}
+            type={type}
+            placeholder={placeholder}
+            autoComplete={autoComplete}
+            {...register(name, rules)}
+            error={errors[name]?.message}
           />
-          {errors.email && (
-            <span className="field-error">{errors.email.message}</span>
-          )}
-        </label>
-
-        <label>
-          Пароль
-          <input
-            type="password"
-            placeholder="Password"
-            autoComplete="current-password"
-            {...register("password", { required: "Введите пароль" })}
-          />
-          {errors.password && (
-            <span className="field-error">{errors.password.message}</span>
-          )}
-        </label>
+        ))}
 
         <div className="signin--button--wrapper">
           <button

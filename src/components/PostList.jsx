@@ -5,7 +5,7 @@ import Button from "./Button";
 import Article from "./Article";
 import { useAuth } from "../context/useAuth";
 
-const PostList = ({ onToggleLike, articles, formatDate }) => {
+const PostList = ({ onToggleLike, articles }) => {
   const { user } = useAuth();
 
   return (
@@ -13,7 +13,7 @@ const PostList = ({ onToggleLike, articles, formatDate }) => {
       {articles.map((article) => (
         <li key={article.slug} className="post">
           <div className="postHeading">
-            <UserInfo article={article} formatDate={formatDate} />
+            <UserInfo article={article} />
 
             {user?.username !== article.author.username && (
               <Button
@@ -53,7 +53,6 @@ PostList.propTypes = {
       }).isRequired,
     }),
   ).isRequired,
-  formatDate: PropTypes.func.isRequired,
 };
 
 export default PostList;

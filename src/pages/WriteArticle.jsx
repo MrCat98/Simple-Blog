@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import { useAuth } from "../context/useAuth";
+import { createArticle, updateArticle } from "../context/api";
 import ArticleForm from "../components/ArticleForm";
 
 const getApiError = (errors) => {
@@ -27,7 +27,6 @@ const NewPostPage = () => {
   const navigate = useNavigate();
   const { slug } = useParams();
   const isEditing = Boolean(slug);
-  const { createArticle, updateArticle } = useAuth();
   const [serverError, setServerError] = useState("");
   const [isLoadingArticle, setIsLoadingArticle] = useState(isEditing);
   const {
