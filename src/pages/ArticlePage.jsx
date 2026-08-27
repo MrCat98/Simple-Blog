@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import UserInfo from "../components/UserInfo";
+import UserInfo from "../components/Userinfo";
 import Tags from "../components/Tag";
 import LoadingArrow from "../assets/refresh.svg";
 import { useAuth } from "../context/useAuth";
