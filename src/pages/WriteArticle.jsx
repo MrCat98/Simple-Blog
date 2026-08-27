@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import { createArticle, updateArticle } from "../context/api";
+import { createArticle, updateArticle } from "../validation/api";
 import ArticleForm from "../components/ArticleForm";
 
 const getApiError = (errors) => {

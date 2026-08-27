@@ -5,7 +5,7 @@ import SidebarPopularTags from "../components/SidebarPopularTags";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
-import { favoriteArticle, unfavoriteArticle } from "../context/api";
+import { favoriteArticle, unfavoriteArticle } from "../validation/api";
 import LoadingArrow from "../assets/refresh.svg";
 
 const HomePage = () => {

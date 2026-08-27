@@ -1,6 +1,6 @@
 import { useForm, useWatch } from "react-hook-form";
 import { useAuth } from "../context/useAuth";
-import { registerUser } from "../context/api";
+import { registerUser } from "../validation/api";
 import { useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import { getSignUpFields } from "../context/SignUpPage.fields";

@@ -8,7 +8,7 @@ import {
   favoriteArticle,
   unfavoriteArticle,
   deleteArticle,
-} from "../context/api";
+} from "../validation/api";
 
 const ArticlePage = () => {
   const { slug } = useParams();

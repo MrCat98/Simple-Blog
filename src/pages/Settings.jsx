@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
-import { updateUser } from "../context/api";
+import { updateUser } from "../validation/api";
 import Input from "../components/Input";
 import { topFields, bottomFields } from "../context/Settings.fields";
 

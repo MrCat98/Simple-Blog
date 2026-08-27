@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/useAuth";
-import { favoriteArticle, unfavoriteArticle } from "../context/api";
+import { favoriteArticle, unfavoriteArticle } from "../validation/api";
 import profileIcon from "../assets/user.svg";
 import PostList from "../components/PostList";
 
