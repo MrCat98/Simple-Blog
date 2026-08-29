@@ -8,6 +8,7 @@ import {
   favoriteArticle,
   unfavoriteArticle,
   deleteArticle,
+  authHeader,
 } from "../validation/api";
 
 const ArticlePage = () => {
@@ -27,6 +28,7 @@ const ArticlePage = () => {
       try {
         const res = await fetch(
           `https://realworld.habsida.net/api/articles/${slug}`,
+          { headers: authHeader() },
         );
 
         if (!res.ok) {
@@ -97,8 +99,9 @@ const ArticlePage = () => {
         </header>
       </div>
       <div className="Article__Page--content--container">
-        <p className="Article__text--content">{article.body}</p>
-        <Tags tags={article.tagList} />
+        <p className="Article__text--content">{article.body}
+          <Tags tags={article.tagList} />
+        </p>
         <section className="Article__User--Submit">
           <UserInfo article={article} />
           {user?.username !== article.author.username && (

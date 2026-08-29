@@ -1,6 +1,6 @@
 const API_URL = "https://realworld.habsida.net/api";
 
-const authHeader = () => {
+export const authHeader = () => {
   const token = localStorage.getItem("token");
   return token ? { Authorization: `Token ${token}` } : {};
 };

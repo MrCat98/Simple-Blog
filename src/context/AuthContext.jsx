@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AuthContext } from "./authContextDefinition";
+import { AuthContext } from "./useAuth";
 
 const API_URL = "https://realworld.habsida.net/api";
 

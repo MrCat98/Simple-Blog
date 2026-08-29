@@ -18,18 +18,19 @@ body {
 }
 
 .homePage {
-  min-width: 100%;
+  max-width: 1280px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .navigation {
-  width: 100%;
+  min-width: 800px;
   height: 60px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding:16px;
   border-bottom: 1px solid #0000001a;
 
   h3 {
@@ -103,7 +104,7 @@ body {
 }
 
 .sidebar__popular-tags {
-  width: min(800px, calc(100% - 32px));
+  min-width:800px;
   min-height: 88px;
   height: auto;
   display: flex;
@@ -156,10 +157,9 @@ body {
 }
 
 .post {
-  width:800px ;
+  min-width:800px;
   display: flex;
   flex-direction: column;
-
   gap: 12px;
   padding: 16px;
   margin-top: 20px;
@@ -185,9 +185,23 @@ body {
   cursor: pointer;
 }
 
-.Likes-button.liked {
-  background-color: #61bb61;
-  color: #ffffff;
+@keyframes likeBlink {
+  0% {
+    background-color: #ffffff;
+    color: #61bb61;
+  }
+  50% {
+    background-color: #61bb61;
+    color: #ffffff;
+  }
+  100% {
+    background-color: #ffffff;
+    color: #61bb61;
+  }
+}
+
+.Likes-button.blink {
+  animation: likeBlink 0.4s ease;
 }
 
 .Likes-button:focus-visible,
@@ -317,7 +331,7 @@ body {
 }
 
 .Article-Page {
-  width: 100%;
+  min-width:800px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -326,8 +340,9 @@ body {
 
 .Article-wrapper {
   background-color: #333333;
-  width: 100%;
+  max-width:100%;
   height: 282px;
+  padding-left:16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -338,7 +353,7 @@ body {
 }
 
 .Article__header {
-  width: min(590px, calc(100% - 32px));
+  min-width:800px;
 }
 .Article__text--content {
   font-family: "Source Sans 3";
@@ -349,7 +364,7 @@ body {
   width: min(570px, 100%);
 }
 .Article__Page--content--container {
-  width: min(580px, calc(100% - 32px));
+ max-width:800px;
   gap: 24px;
   display: flex;
   justify-content: center;
@@ -357,8 +372,8 @@ body {
   flex-direction: column;
   padding: 24px 16px;
 
-  ul {
-    width: 100%;
+  ul{
+    padding-top:24px;
   }
 
   section {
@@ -579,8 +594,14 @@ body {
   }
 }
 
-@media (max-width: 300px) {
+@media (max-width: 700px) {
+
+  .sidebar__popular-tags {
+  min-width:600px;
+}
+
   .navigation {
+    min-width:600px;
     height: auto;
     min-height: 60px;
     flex-direction: column;
@@ -612,8 +633,8 @@ body {
   }
 
   .post {
-    padding: 12px;
-  }
+  min-width:500px;
+}
 
   .postHeading {
     align-items: flex-start;
