@@ -815,9 +815,20 @@ width:100%;
 }
 
 .tag-option:hover {
-    background-color: #61bb61;
-    color: white;
-  }
+  background-color: #61bb61;
+  color: white;
+}
+
+.tag-option--active {
+  background-color: #61bb61;
+  border-color: #61bb61;
+  color: #ffffff;
+}
+
+.tag-option:focus-visible {
+  outline: 3px solid #333333;
+  outline-offset: 3px;
+}
 
 .new-post-form .submit-button {
   align-self: flex-end;
