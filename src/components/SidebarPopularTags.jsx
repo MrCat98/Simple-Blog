@@ -10,7 +10,9 @@ const SidebarPopularTags = ({ articles }) => {
   ].slice(0, 5);
 
   return (
-    <div className="sidebar__popular-tags">
+    <div className="sidebar__popular-tags-wrapper">
+      <div className="popular-tag">
+
       <h3>Popular tags</h3>
 
       <ul>
@@ -19,7 +21,7 @@ const SidebarPopularTags = ({ articles }) => {
           .map((tag) => (
             <li key={tag}>{tag}</li>
           ))}
-      </ul>
+      </ul></div>
     </div>
   );
 };

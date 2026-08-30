@@ -92,12 +92,13 @@ const ArticlePage = () => {
 
   return (
     <div className="Article-Page">
+      <div className="Article--header--container">
       <div className="Article-wrapper">
         <header className="Article__header">
           <h1>{article.title}</h1>
           <UserInfo article={article} />
         </header>
-      </div>
+      </div></div>
       <div className="Article__Page--content--container">
         <p className="Article__text--content">{article.body}
           <Tags tags={article.tagList} />

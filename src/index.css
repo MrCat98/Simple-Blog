@@ -31,7 +31,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding:16px;
+  
   border-bottom: 1px solid #0000001a;
 
   h3 {
@@ -104,10 +104,17 @@ body {
   }
 }
 
-.sidebar__popular-tags {
-  width: min(100%, 800px);
+.sidebar__popular-tags-wrapper{
+width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popular-tag {
+  width: 800px;
+  max-width:  800px;
   min-height: 88px;
-  height: auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -306,20 +313,19 @@ body {
   color: #aaaaaa;
 }
 
-.sidebar__popular-tags ul {
+.popular-tag  ul {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
-.sidebar__popular-tags li {
+.popular-tag li {
   font-family: "Source Sans 3", monospace;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #aaaaaa;
   font-size: 16px;
-  min-width: 50px;
   min-height: 32px;
   max-width: 100%;
   background-color: #ffffff;
@@ -327,7 +333,6 @@ body {
   border-radius: 16px;
   padding: 6px 16px;
   cursor: pointer;
-  overflow-wrap: anywhere;
 }
 
 .sidebar__popular-tags li:hover {
@@ -343,26 +348,36 @@ body {
   gap: 10px;
 }
 
-.Article-wrapper {
-  background-color: #333333;
-  width: 100%;
+.Article--header--container{
+  width:100%;
   height: 282px;
-  padding: 0 16px;
+   background-color: #333333;
+   display: flex;
+   justify-content: center;
+}
+
+.Article-wrapper {
+  width: 800px;
+  height: 282px;
+  padding: 10px;
+  gap: 10px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items:center;
   flex-direction: column;
   margin-bottom: 10px;
   color: #ffffff;
-  margin-top: 70px;
 }
 
 .Article__header {
-  max-width: 800px;
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  gap:24px;
 }
 
 .Article__header h1 {
-  overflow-wrap: anywhere;
+  width:100%;
 }
 .Article__text--content {
   font-family: "Source Sans 3";
@@ -605,7 +620,12 @@ body {
 }
 
 @media (max-width: 800px) {
-  .sidebar__popular-tags {
+  .sidebar__popular-tags-wrapper {
+    width: 100%;
+    padding:16px;
+  }
+
+  .popular-tag {
     width: 100%;
   }
 
